@@ -1,0 +1,41 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h2>Register</h2>
+	</div>
+</md-toolbar>
+<md-content>
+	<form name="registerForm" layout="column">
+		<md-input-container>
+				<label>Display Name</label>
+				<input type="text" name="display" ng-model="regiCtrl.form.display" required minlength="3" maxlength="12">
+				<div ng-messages="registerForm.display.$error">
+					<div ng-message-exp="['required', 'minlength', 'maxlength']">Display name must be 3 - 12 characters long</div>
+				</div>
+		</md-input-container>
+		<md-input-container>
+			<label>Email</label>
+			<input type="email" name="email" required ng-model="regiCtrl.form.email">
+			<div ng-messages="registerForm.email.$error" ng-pattern="/^.+@.+\..+$/">
+				<div ng-message="required">Email Is Required</div>
+				<div ng-message="email">Email must look like an email address</div>
+			</div>
+		</md-input-container>
+		<md-input-container>
+			<label>Password</label>
+			<input type="password" name="password" required ng-model="regiCtrl.form.password" minlength="6" maxlength="12">
+			<div ng-messages="registerForm.password.$error">
+				<div ng-message="required">This field is required</div>
+				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 12 characters</div>
+			</div>
+		</md-input-container>
+		<md-input-container>
+			<label>Confirm Password</label>
+			<input type="password" name="cPassword" required ng-model="regiCtrl.form.cPassword" minlength="6" maxlength="12">
+			<div ng-messages="registerForm.cPassword.$error">
+				<div ng-message="required">This field is required</div>
+				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 12 characters</div>
+			</div>
+		</md-input-container>
+		<md-button ng-click="regiCtrl.register()">Register</md-button>
+	</form>
+</md-content>

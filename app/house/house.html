@@ -1,0 +1,52 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h3>The Great Halls of Graceland University</h3>
+	</div>
+</md-toolbar>
+<md-content layout="column">
+<!-- 	<form ng-submit="houseCtrl.add()" layout="column">
+		<md-input-container>
+			<label>Name</label>
+			<input type="text" placeholder="Agape, Amici, ..." ng-model="houseCtrl.house.name">
+		</md-input-container>
+		<md-input-container>
+			<label>Gender</label>
+			<md-select ng-model="houseCtrl.house.gender">
+				<md-option ng-repeat="g in houseCtrl.gender" value="{{g.val}}">{{g.label}}</md-option>
+			</md-select>
+		</md-input-container>
+		<md-button type="submit">Add</md-button>
+	</form> -->
+	<md-progress-linear md-mode="indeterminate" ng-hide="houseCtrl.loaded"></md-progress-linear>
+	<md-content layout="column" ng-show="houseCtrl.loaded">
+		<md-input-container flex>
+			<label>&nbsp;</label>
+			<input type="text" ng-model="houseCtrl.query.name" placeholder="Search House">
+		</md-input-container>	
+		<div layout="row" ng-repeat="h in houseCtrl.allHalls | filter:houseCtrl.query">
+			<div flex hide show-gt-sm></div>
+			<md-card flex>
+				<md-card-header>
+					<md-card-avatar>
+						<img class="md-user-avatar" ng-src="{{h.imgPath}}">
+					</md-card-avatar>
+					<md-card-header-text>
+						<span class="md-title">{{h.name}}</span>
+						<span class="md-subhead">House Card</span>
+					</md-card-header-text>
+					<md-card-actions layout="column">
+						<md-button class="md-icon-button" aria-label="Teams" ng-click="houseCtrl.goHouseTeam(h.$id)">
+							<md-icon md-svg-icon="./icons/people.svg"></md-icon>
+							<md-tooltip md-direction="left">Teams</md-tooltip>
+						</md-button>
+<!-- 						<md-button class="md-icon-button" aria-label="Stats" ng-click="houseCtrl.goHouseStats(h.$id)">
+							<md-icon md-svg-icon="./icons/poll.svg"></md-icon>
+							<md-tooltip md-direction="left">Stats</md-tooltip>					
+						</md-button> -->
+					</md-card-actions>				
+				</md-card-header>			
+			</md-card>
+			<div flex hide show-gt-sm></div>
+		</div>	
+	</md-content>
+</md-content>

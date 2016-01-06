@@ -1,0 +1,74 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h3>{{prelimCtrl.sport.name}} Preliminaries</h3>
+	</div>
+</md-toolbar>
+<md-content layout="column">
+	<md-progress-linear md-mode="indeterminate" ng-hide="prelimCtrl.prelim.loaded" class="md-warn"></md-progress-linear>
+	<div layout="column" flex ng-show="prelimCtrl.prelim.loaded && prelimCtrl.prelimRef.length == 0">
+		<div layout="row" flex>
+			<div flex></div>
+		</div>
+		<div layout="row" flex>
+			<div flex></div>
+			<md-button class="md-raised md-accent" ng-hide="prelimCtrl.entrant.length <= 1" ng-click="prelimCtrl.createRRTable()">Create Table</md-button>
+			<md-button class="md-raised md-accent" ng-show="prelimCtrl.entrant.length <= 1" ng-click="prelimCtrl.goEntrant()">Add PArticipating Teams</md-button>			
+			<div flex></div>
+		</div>
+		<div layout="row" flex>
+			<div flex></div>
+		</div>				
+	</div>
+	<md-tabs md-dynamic-height md-border-bottom class="md-accent" ng-show="prelimCtrl.prelim.loaded && prelimCtrl.prelimRef.length != 0">
+		<md-tab label="overall">
+			<md-content class="md-padding">
+				<md-table-container>
+					<table md-table>
+						<thead md-head>
+							<tr md-row>
+								<th md-column>Teams</th>
+								<th md-column>Wins</th>
+								<th md-column>Loss</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row ng-repeat="t in prelimCtrl.teams">
+								<td md-cell>{{t.name}}</td>
+								<td md-cell>{{prelimCtrl.prelim.total[t.$id].wins}}</td>
+								<td md-cell>{{prelimCtrl.prelim.total[t.$id].loss}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+			</md-content>
+		</md-tab>
+		<md-tab ng-repeat="tt in prelimCtrl.teams" label="{{tt.name}}">
+			<md-content class="md-padding">
+				<md-subheader>
+					<h3>{{tt.name}} Games</h3>
+				</md-subheader>
+				<md-table-container>
+					<table md-table>
+						<thead md-head>
+							<tr md-row>
+								<th md-column>Opponent</th>
+								<th md-column>Score</th>
+								<th md-column>Result</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row ng-repeat="ot in prelimCtrl.teams" ng-hide="ot.$id == tt.$id" md-select="ot" md-auto-select ng-click="prelimCtrl.goPrelimSlot(prelimCtrl.rrTable[$parent.$index][$index])">
+								<td md-cell>{{ot.name}}</td>
+								<td md-cell>
+									<span ng-show="prelimCtrl.prelim.slot[prelimCtrl.rrTable[$parent.$index][$index]].played">{{prelimCtrl.prelim.score[prelimCtrl.rrTable[$parent.$index][$index]][ot.$id].score}} - {{prelimCtrl.prelim.score[prelimCtrl.rrTable[$parent.$index][$index]][tt.$id].score}}</span>
+									<span ng-hide="prelimCtrl.prelim.slot[prelimCtrl.rrTable[$parent.$index][$index]].played">{{prelimCtrl.formatDate(prelimCtrl.prelim.slot[prelimCtrl.rrTable[$parent.$index][$index]].date) | date:'MM/dd/yyyy @ h:mma'}}</span>
+								</td>
+								<td md-cell>{{prelimCtrl.prelim.score[prelimCtrl.rrTable[$parent.$index][$index]][tt.$id].result}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+			</md-content>
+		</md-tab>
+	</md-tabs>
+</md-content>

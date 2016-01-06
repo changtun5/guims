@@ -1,0 +1,16 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>{{sportIdCtrl.sport.name}} <span ng-hide="sportIdCtrl.sport.league == 'N'">{{sportIdCtrl.sport.league}} League</span></h1>
+	</div>
+</md-toolbar>
+<md-content>
+	<md-grid-list
+		md-cols="2" md-row-height="1:1" md-gutter="0px">
+		<md-grid-tile
+			md-rowspan="1" md-colspan="1"
+			ng-style="{background: gm.bg}"
+			ng-repeat="gm in sportIdCtrl.gridMenu" ng-click="gm.go()" md-ink-ripple>
+			<md-grid-tile-footer><h3>{{gm.label}}</h3></md-grid-tile-footer>
+		</md-grid-tile>
+	</md-grid-list>
+</md-content>

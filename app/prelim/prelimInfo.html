@@ -1,0 +1,126 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h3>{{prelimInfoCtrl.pageData.sport}} <span ng-hide="prelimInfoCtrl.league == 'N'">{{prelimInfoCtrl.league}}</span> {{': ' + prelimInfoCtrl.pageData.name}}</h3>
+	</div>
+</md-toolbar>
+<md-content>
+	<md-progress-linear md-mode="indeterminate" ng-hide="prelimInfoCtrl.pageData.loaded" class="md-warn"></md-progress-linear>	
+	<md-content ng-show="prelimInfoCtrl.pageData.loaded" ng-cloak layout="column">
+		<md-tabs class="md-accent" md-dynamic-height md-border-bottom ng-cloak flex>
+			<md-tab label="Schedule" layout="column" flex>
+				<h3 ng-hide="prelimInfoCtrl.pageData['played']">
+					<span ng-show="prelimInfoCtrl.pageData['dateSet']">This game is scheduled at : </span>
+					<span ng-hide="prelimInfoCtrl.pageData['dateSet']">Please schedule a time for this game</span>
+				</h3>
+				<div layout="row" layout-margin>
+					<div flex></div>
+					<time-date-picker ng-hide="prelimInfoCtrl.pageData['played']" display-mode="full" ng-model="prelimInfoCtrl.pageData.sche" orientation="false" on-save="prelimInfoCtrl.saveDate($value)"></time-date-picker>
+					<div flex></div>
+				</div>
+				<div flex layout="row" layout-margin ng-show="prelimInfoCtrl.pageData['played']">
+					<div flex ="20" hide show-gt-sm></div>
+					<md-card flex>
+						<md-card-title>
+							<md-card-title-text>
+								<span class="md-headline">Completed!</span>
+								<span class="md-subhead">{{prelimInfoCtrl.formatDate(prelimInfoCtrl.pageData.sche) | date:'MM/dd/yyyy @ h:mma'}}</span>
+							</md-card-title-text>
+							<md-card-title-media>
+								<md-icon class="md-media-sm card media" md-svg-src="./icons/green_check.svg"></md-icon>
+							</md-card-title-media>
+						</md-card-title>
+					</md-card>
+					<div flex="20" hide show-gt-sm></div>
+				</div>			
+			</md-tab>
+			<md-tab label="Scorecard" ng-disabled="!prelimInfoCtrl.pageData['dateSet']" flex layout="column">
+				<md-content layout="column" layout-gt-sm="row" flex>
+					<md-card flex ng-repeat="t in prelimInfoCtrl.teams" flex>
+						<md-card-title>
+							<md-card-title-text>
+								<span class="md-headline">{{t.name}} ({{prelimInfoCtrl.prelimScore[t.$id].result}})</span>
+								<span class="md-subhead">Scorecard</span>
+							</md-card-title-text>
+						</md-card-title>
+						<md-card-content layout="column" flex>
+							<form name="Form" flex layout="column">
+								<md-input-container>
+									<label>Score</label>
+									<input type="number" name="score" ng-model="prelimInfoCtrl.prelimScore[t.$id].score" min="0" required>
+									<div ng-messages="Form.score.$error">
+										<div ng-message="min">
+											Minimum score is 0
+										</div>
+										<div ng-message="required">
+											Score is required. (Set to 0 for default)
+										</div>
+									</div>
+								</md-input-container>
+								<md-input-container>
+									<label>SP Points</label>
+									<input type="number" name="spPts" ng-model="prelimInfoCtrl.prelimScore[t.$id].spPts" min="0" max="10" required>
+									<div ng-messages="Form.spPts.$error">
+										<div ng-message="min">
+											Minimum points is 0
+										</div>
+										<div ng-message="max">
+											Maximum points is 10
+										</div>
+										<div ng-message="required">
+											Required for sportmanship points!
+										</div>
+									</div>
+								</md-input-container>
+							</form>
+						</md-card-content>
+						<md-card-actions layout="row" layout-align="end center">
+							<!-- <md-button class="md-accent md-raised" ng-disabled="prelimInfoCtrl.pageData['played']">Default Win</md-button>						 -->
+							<!-- <md-button class="md-accent md-raised" ng-click="prelimInfoCtrl.defaultWin(t.$id)">Default Win</md-button>						 -->
+							<md-button class="md-accent md-raised" ng-disabled="!Form.$valid" ng-click="prelimInfoCtrl.saveScorecard(t.$id)">Save</md-button>
+						</md-card-actions>				
+					</md-card>
+				</md-content>
+			</md-tab>
+			<md-tab label="Attendance" ng-disabled="!prelimInfoCtrl.pageData['dateSet']">
+				<md-content layout="column" layout-gt-sm="row">			
+					<md-card ng-repeat="tt in prelimInfoCtrl.teams" flex>
+						<md-card-title>
+							<md-card-title-text>
+								<span class="md-headline">{{tt.name}}</span>
+								<span class="md-subhead">Attendance Card</span>
+							</md-card-title-text>
+							<md-card-action layout="column">
+								<md-button class="md-icon-button" aria-label="Add Roster" ng-disabled="prelimInfoCtrl.pageData[tt.$id].rosterSaved" ng-click="prelimInfoCtrl.showAddRosterDialog($event, tt.$id, prelimInfoCtrl.roster[tt.$id])">
+									<md-icon md-svg-icon="./icons/people_add.svg"></md-icon>
+									<md-tooltip md-direction="left">Add Member</md-tooltip>
+								</md-button>
+								<md-button class="md-icon-button" aria-label="Save/Edit" ng-click="prelimInfoCtrl.saveAttendance(tt.$id)">
+									<md-icon md-svg-icon="{{prelimInfoCtrl.saveEditAttIcon(tt.$id, 'icon')}}"></md-icon>
+									<md-tooltip md-direction="left">{{prelimInfoCtrl.saveEditAttIcon(tt.$id, 'toolTip')}}</md-tooltip>									
+								</md-button>
+								<md-button class="md-icon-button" aria-label="Show Roster" ng-click="prelimInfoCtrl.toggleShowIcon('pageData',tt.$id, 'showRos')">
+									<md-icon md-svg-icon="{{prelimInfoCtrl.returnShowIcon(prelimInfoCtrl.pageData[tt.$id].showRos)}}"></md-icon>
+									<md-tooltip md-direction="left">{{prelimInfoCtrl.returnShowTooltip(prelimInfoCtrl.pageData[tt.$id].showRos)}}</md-tooltip>									
+								</md-button>	
+							</md-card-action>
+						</md-card-title>
+						<md-card-content>
+								<md-list-item ng-repeat="p in prelimInfoCtrl.roster[tt.$id]" class="md-2-line secondary-button-padding" ng-show="prelimInfoCtrl.pageData[tt.$id].showRos">
+									<div class="md-list-item-text">
+										<h3>{{prelimInfoCtrl.getPeople(p, 'name')}}</h3>
+										<p>Played {{prelimInfoCtrl.showAtt(prelimInfoCtrl.getPeople(p, '$id'))}} time(s)</p>
+									</div>
+									<md-checkbox class="md-secondary" ng-model="prelimInfoCtrl.pageData[tt.$id].att[p]" ng-disabled="prelimInfoCtrl.pageData[tt.$id].rosterSaved"></md-checkbox>
+									<md-divider ng-if="!$last"></md-divider>
+								</md-list-item>
+							</md-list>
+						</md-card-content>
+					</md-card>
+				</md-content>
+			</md-tab>
+			<md-tab label="Staff" ng-disabled="!prelimInfoCtrl.pageData['dateSet']">
+
+			</md-tab>
+		</md-tabs>
+	</md-content>
+</md-content>

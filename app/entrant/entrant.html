@@ -1,0 +1,21 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>{{entrantCtrl.sport.name}} <span ng-show="{{entrantCtrl.league != 'N'}}">{{entrantCtrl.league}} League </span>Teams</h1>
+	</div>
+</md-toolbar>
+<md-content>
+	<div layout="row" layout-sm="column" layout-align="space-around" ng-hide="entrantCtrl.loaded">
+			<md-progress-circular md-mode="indeterminate" ></md-progress-circular>		
+	</div>
+	<md-content layout="column" ng-show="entrantCtrl.loaded">	
+		<md-list ng-cloak>
+			<md-list-item ng-repeat="vt in entrantCtrl.validTeams">
+				<p>{{vt.name}}</p>
+				<md-checkbox class="md-secondary" ng-model="entrantCtrl.entrees[vt.$id]" ng-disabled="entrantCtrl.disableThis(vt.$id)"></md-checkbox>
+				<md-divider></md-divider>
+			</md-list-item>	
+		</md-list>
+		<md-button class="md-accent md-raised" ng-click="entrantCtrl.saveTeams()">Save</md-button>
+		<!-- {{entrantCtrl.enteredTeams}} -->
+	</md-content>
+</md-content>

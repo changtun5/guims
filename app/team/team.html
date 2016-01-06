@@ -1,0 +1,26 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>New Team</h1>
+	</div>
+</md-toolbar>
+<md-content ng-cloak>
+<form layout="column" ng-submit="teamCtrl.add()" name="newTeam">
+	<md-input-container>
+		<label><span ng-hide="teamCtrl.checkTeamName(teamCtrl.team.name)">Name</span><span class="md-warn" ng-show="teamCtrl.checkTeamName(teamCtrl.team.name)">Team Name Taken</span></label>
+		<input type="text" required ng-model="teamCtrl.team.name" name="teamName">
+	</md-input-container>
+	<md-input-container ng-repeat="m in teamCtrl.members">
+		<label>Member {{$index + 1}}</label>
+		<md-select ng-model="teamCtrl.members[$index].teamId">
+			<md-option ng-repeat="h in teamCtrl.house" value="{{h.$id}}">{{h.name}}</md-option>
+		</md-select>
+	</md-input-container>
+	<md-button ng-click="teamCtrl.moreMember()">More Member</md-button>
+	<md-input-container>
+		<md-radio-group ng-model="teamCtrl.team.league">
+			<md-radio-button ng-repeat="l in teamCtrl.leagues" value="{{l.value}}">{{l.label}}</md-radio-button>
+		</md-radio-group>
+	</md-input-container>	
+	<md-button type="submit">Add</md-button>			
+</form>
+</md-content>

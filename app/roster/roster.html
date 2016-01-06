@@ -1,0 +1,60 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h3><span>{{rosterCtrl.getTeam(rosterCtrl.teamId,'name')}} </span>Roster</h3>
+	</div>
+</md-toolbar>
+<md-content>
+	<md-progress-linear md-mode="indeterminate" ng-hide="rosterCtrl.loaded"></md-progress-linear>
+	<md-content layout="column" flex ng-show="rosterCtrl.loaded">
+		<md-input-container>
+			<label>&nbsp;</label>
+			<input type="text" ng-model="rosterCtrl.query.name" placeholder="Search Person">
+		</md-input-container>
+		<md-content layout="column" layout-gt-sm="row" flex>
+			<md-card flex>
+				<md-card-content>
+					<md-list flex>
+						<md-list-item ng-click="rosterCtrl.toggleShowMembers()">
+							<div class="md-list-item-text">
+								<p><strong>Members</strong></p>
+							</div>
+							<md-button class="md-icon-button md-secondary" aria-label="Show Members">
+								<md-icon md-svg-icon="{{rosterCtrl.returnMinMaxSvg()}}"></md-icon>
+							</md-button>
+							<md-divider></md-divider>
+						</md-list-item>
+						<md-list-item class="md-2-line secondary-button-padding" ng-repeat="p in rosterCtrl.people | filter: rosterCtrl.query.name" ng-show="rosterCtrl.showMembers">
+							<div class="md-list-item-text">
+								<h4>{{p.name}}</h4>
+								<p><span ng-show="rosterCtrl.teamRoster[p.$id].disabled">#{{rosterCtrl.getTeam(rosterCtrl.getPeopleInTeam(p.team), 'name')}}</span></p>
+							</div>
+							<md-checkbox class="md-secondary" ng-model="rosterCtrl.teamRoster[p.$id].inRos" ng-disabled="rosterCtrl.teamRoster[p.$id].disabled"></md-checkbox>
+							<md-divider ng-if="!$last"></md-divider>
+						</md-list-item>
+					</md-list>				
+				</md-card-content>				
+			</md-card>
+			<md-card flex>
+				<md-card-content>	
+					<md-list flex>
+						<md-list-item>
+							<div class="md-list-item-text">
+								<h4>Roster</h4>
+							</div>
+							<md-button class="md-icon-button md-secondary" aria-label="Save Roster" ng-click="rosterCtrl.saveRoster()">
+								<md-icon md-svg-icon="./icons/save.svg"></md-icon>
+							</md-button>
+							<md-divider></md-divider>
+						</md-list-item>					
+						<md-list-item ng-repeat="r in rosterCtrl.teamRoster" ng-show="r.inRos">
+							<div class="md-list-item-text">
+								<p>{{r.name}}</p>
+							</div>
+							<md-divider ng-if="!$last"></md-divider>
+						</md-list-item>
+					</md-list>
+				</md-card-content>
+			</md-card>
+		</md-content>	
+	</md-content>
+</md-content>

@@ -1,0 +1,937 @@
+name		hall
+Abbott, Tyler	[]	Faunce
+Abreu, Anthony	[]	Faunce
+Adamson, Kruz	[]	Faunce
+Baldwin, Jesse	[]	Faunce
+Barksdale, Cameron	[]	Faunce
+Barnes, Troy	[]	Faunce
+Belmontez, Ricky	[]	Faunce
+Brown, Logan	[]	Faunce
+Caminos-Cassium, Jensen	[]	Faunce
+Chandler, Brenden	[]	Faunce
+Compton, Preston	[]	Faunce
+Donarski, Robert	[]	Faunce
+Ferrara, Zachary	[]	Faunce
+Forbes, Dalton	[]	Faunce
+Gardner, Clinton	[]	Faunce
+Gentry, Daniel	[]	Faunce
+Givens, Alexander	[]	Faunce
+Godinez, Antonio	[]	Faunce
+Guider, Dustan	[]	Faunce
+Guido, Christian	[]	Faunce
+Hart, Mitch	[]	Faunce
+Hendricks, Jake	[]	Faunce
+Jackson, Robert	[]	Faunce
+Kaminski, Justin	[]	Faunce
+Keehler, Nicholas	[]	Faunce
+Kemp, Avery	[]	Faunce
+Landers, Ben	[]	Faunce
+Lester, Noah	[]	Faunce
+Litchfield, Ozzy	[]	Faunce
+McEachern, Bryce	[]	Faunce
+McKinney, Mark	[]	Faunce
+Medina Pernia, Orangel	[]	Faunce
+Meza-Prado, Cesar	[]	Faunce
+Middleton, Alex	[]	Faunce
+Miller, Isaiah	[]	Faunce
+Mogg, Jordan	[]	Faunce
+Molina Gonzalez, Charles	[]	Faunce
+Munoz, Gonzo	[]	Faunce
+Obrochta, Dariusz	[]	Faunce
+Ossiginac, Danny	[]	Faunce
+Panariti, Lorenzo	[]	Faunce
+Perez Allica, Borja	[]	Faunce
+Pineda Gordillo, Sebastian	[]	Faunce
+Reynolds, Jacob	[]	Faunce
+Reynolds, Jeremiah	[]	Faunce
+Richt, Alexander	[]	Faunce
+Rogero, Ryan	[]	Faunce
+Rose, Devin	[]	Faunce
+Russum, Wesley	[]	Faunce
+Savea, Toma	[]	Faunce
+Sherif, Abdelrahman	[]	Faunce
+Shrestha, Ashesh	[]	Faunce
+Smith, Nick	[]	Faunce
+Sprunger, Joseph	[]	Faunce
+Stevens-Leaai, Danzell	[]	Faunce
+Thornton, Cody	[]	Faunce
+Torres, Mike	[]	Faunce
+Turk, Robbie	[]	Faunce
+White, Julian	[]	Faunce
+Williams, AJ	[]	Faunce
+Wintermote, Andrew	[]	Faunce
+Allen, Cartland	[]	Tiona
+Allen, Coulter	[]	Tiona
+Amazan, Jeff	[]	Tiona
+Bachelier, Jacob	[]	Tiona
+Bain, Brandon	[]	Tiona
+Bateman, Damon	[]	Tiona
+Bear, Matthew	[]	Tiona
+Beck, Hunter	[]	Tiona
+Briggs, Kenyon	[]	Tiona
+Carlisle, Marcelus	[]	Tiona
+Clairvil, Doriand	[]	Tiona
+Clemence, Andrew	[]	Tiona
+Collins, Gabriel	[]	Tiona
+Cowlah II, Dj	[]	Tiona
+Coyle, Nickolas	[]	Tiona
+Douglas, Taylor	[]	Tiona
+Francisco, Max	[]	Tiona
+Franklin, LaBradford	[]	Tiona
+Gade, Mike	[]	Tiona
+Glaser, Gabriel	[]	Tiona
+Goin, Jason	[]	Tiona
+Greer, Jerry	[]	Tiona
+Hinkhouse, Samuel	[]	Tiona
+Hofmann, Zachary	[]	Tiona
+Holsted, Floyd	[]	Tiona
+Honeycutt, Aaron	[]	Tiona
+Howell, Tyler	[]	Tiona
+Isley, Terry	[]	Tiona
+Jean, Jimmy	[]	Tiona
+Lewis, Evan	[]	Tiona
+Lomeli, Edward	[]	Tiona
+Lugo, Michael	[]	Tiona
+McKinney, Ryan	[]	Tiona
+McNeil, Roosevelt	[]	Tiona
+Moananu, Kanekoa	[]	Tiona
+Nethers, Jacob	[]	Tiona
+Oakley, Julian	[]	Tiona
+Ortiz, Christopher	[]	Tiona
+Peapealalo, Fanupo	[]	Tiona
+Peapealalo, Galu	[]	Tiona
+Peralta, Tyler	[]	Tiona
+Pierre, Mike	[]	Tiona
+Richardson, Gustin	[]	Tiona
+Rodriguez De Jesus, Ediberto	[]	Tiona
+Roland, Brandon	[]	Tiona
+Sathoff, Trey	[]	Tiona
+Savage, James	[]	Tiona
+Shatto, Austin	[]	Tiona
+Slayton, Samuel	[]	Tiona
+Smith, Blake	[]	Tiona
+Smith, Josiah	[]	Tiona
+Springer, Dylan	[]	Tiona
+Starr, Jonathan	[]	Tiona
+Todd, Raphael	[]	Tiona
+Torres, Caleb	[]	Tiona
+Torres, Jacob	[]	Tiona
+Ward, William	[]	Tiona
+Welch, Jordan	[]	Tiona
+Williams, David	[]	Tiona
+Williams, Johnie	[]	Tiona
+Adhikari, Tribikram	[]	Cheville
+Austin, Braden	[]	Cheville
+Bass, Keifer	[]	Cheville
+Billings, Treveon	[]	Cheville
+Boland, Nick	[]	Cheville
+Bowerman, Sean	[]	Cheville
+Bregar, Tommy	[]	Cheville
+Campbell, Anthony	[]	Cheville
+Campbell, Manasseh	[]	Cheville
+Chapley, Carter	[]	Cheville
+Christian, Brandon	[]	Cheville
+Connors, Tommy	[]	Cheville
+Corless, Devon	[]	Cheville
+DePriest, Kyle	[]	Cheville
+Diaz, Rony	[]	Cheville
+Dominguez, Juan	[]	Cheville
+Dye, Cory	[]	Cheville
+Edwards III, Marvin	[]	Cheville
+Edwards, Daniel	[]	Cheville
+Edwards, Romeo	[]	Cheville
+Ewens, Kris	[]	Cheville
+Foster, Dylan	[]	Cheville
+Ginger, Anthony	[]	Cheville
+Goodin, Daniel	[]	Cheville
+Greenlaw, John	[]	Cheville
+Hamilton, Sean	[]	Cheville
+Haynes, Terrance	[]	Cheville
+Hedges, Anthony	[]	Cheville
+James-Smith, Rossano	[]	Cheville
+Johnson, Grant	[]	Cheville
+Lesu, Lucky	[]	Cheville
+Limbada, Waseem	[]	Cheville
+Ly, Danny	[]	Cheville
+Majerus, Shane	[]	Cheville
+Marrash, Anthony	[]	Cheville
+McCaffrey-Anderson, Brandon	[]	Cheville
+McClellan, Jacob	[]	Cheville
+Nelson, William	[]	Cheville
+O'Keefe, Sean	[]	Cheville
+Oiler, Corey	[]	Cheville
+Padilla, Chris	[]	Cheville
+Richard, Phillip	[]	Cheville
+Roberts, Blake	[]	Cheville
+Robinson, Christopher	[]	Cheville
+Rodriguez Guzman, Juan	[]	Cheville
+Sarabia, Christian	[]	Cheville
+Selby, Brian	[]	Cheville
+Shell, Cedric	[]	Cheville
+Shrestha, Sameer	[]	Cheville
+Soard, Josh	[]	Cheville
+Sosa, Gio	[]	Cheville
+Still, Jacob	[]	Cheville
+Storey, Trevor	[]	Cheville
+Stouffer, Joe	[]	Cheville
+Thomas, Stanley	[]	Cheville
+Tokatli, Ali Samir	[]	Cheville
+Vasquez, Gabriel	[]	Cheville
+Victor, Matthew	[]	Cheville
+Walsh, Sean	[]	Cheville
+Zarems, Rain	[]	Cheville
+Zweifel, Marcus	[]	Cheville
+Austin, Adam	[]	Stewart Manor
+Berg, Garrett	[]	Stewart Manor
+Brown, Deontae	[]	Stewart Manor
+Brown, Ray	[]	Stewart Manor
+Butts, Stephon	[]	Stewart Manor
+Canady, Joseph	[]	Stewart Manor
+Carter, Cameron	[]	Stewart Manor
+Cherubin, Beauchni	[]	Stewart Manor
+Christensen, Broc	[]	Stewart Manor
+Coca, Nicholas	[]	Stewart Manor
+Coleman, Logan	[]	Stewart Manor
+Counts, Clarence	[]	Stewart Manor
+Finister-Madry, Dre	[]	Stewart Manor
+Fink, Mark	[]	Stewart Manor
+Galbraith, Andrew	[]	Stewart Manor
+Garza, Miguel	[]	Stewart Manor
+Gentile, Steve	[]	Stewart Manor
+Goic, Kevin	[]	Stewart Manor
+Gonzalez, Jacob	[]	Stewart Manor
+Grant, Shane	[]	Stewart Manor
+Gutierrez, Cody	[]	Stewart Manor
+Hamchaoui, Elias	[]	Stewart Manor
+Herb, Thomas	[]	Stewart Manor
+Hicks, Junior	[]	Stewart Manor
+Hill, Taylor	[]	Stewart Manor
+Holland, David	[]	Stewart Manor
+Hudnut, Joshua	[]	Stewart Manor
+Hudson, Latavis	[]	Stewart Manor
+Kerscher, Justin	[]	Stewart Manor
+Kisner, Evan	[]	Stewart Manor
+Kraus, Zach	[]	Stewart Manor
+Kurc, Taylor	[]	Stewart Manor
+Leinen, Paul	[]	Stewart Manor
+Madera Perdomo, Edward	[]	Stewart Manor
+Magana, Saul	[]	Stewart Manor
+Mann, Trey	[]	Stewart Manor
+Martin, Carl	[]	Stewart Manor
+Martinez Mendez, Joselin	[]	Stewart Manor
+Medina, Leon	[]	Stewart Manor
+Mendoza, Carlos	[]	Stewart Manor
+Monroe, Joel	[]	Stewart Manor
+Myers, Davonte	[]	Stewart Manor
+Padilla, Matthew	[]	Stewart Manor
+Perea, David	[]	Stewart Manor
+Putnam, Adam	[]	Stewart Manor
+Riverol, Diego	[]	Stewart Manor
+Salgado, Gerardo	[]	Stewart Manor
+Shepard, David	[]	Stewart Manor
+Smith, Chris	[]	Stewart Manor
+Smith, Travis	[]	Stewart Manor
+Snorgrass, William	[]	Stewart Manor
+Soltis, Jacob	[]	Stewart Manor
+Suarez Parra, Felipe	[]	Stewart Manor
+Templeton, David	[]	Stewart Manor
+Thomas, Deandre	[]	Stewart Manor
+Thurman, Steve	[]	Stewart Manor
+Tucker, Silila	[]	Stewart Manor
+Walker, Tyrone	[]	Stewart Manor
+Wiggan, Nicholas	[]	Stewart Manor
+Willis, James	[]	Stewart Manor
+Aho, Drew	[]	Closson
+Aki, Sean	[]	Closson
+Amaglo, Yaovi	[]	Closson
+Andonian, Jesse	[]	Closson
+Bartley, Dileel	[]	Closson
+Britt, Dakota	[]	Closson
+Clark, Robert	[]	Closson
+Cooper, Mathew	[]	Closson
+Cramer, Marshall	[]	Closson
+Cronbaugh, Elijah	[]	Closson
+Crow, Khamin	[]	Closson
+Currin, Logan	[]	Closson
+Galusha, Aquila	[]	Closson
+Geter, Johnny	[]	Closson
+Graham, Colton	[]	Closson
+Gray, Andrew	[]	Closson
+Gray, Cole	[]	Closson
+Grimes, Michael	[]	Closson
+Hamar, David	[]	Closson
+Harris, Askia	[]	Closson
+Hobdy, Maleek	[]	Closson
+Jones, Darius	[]	Closson
+Little, Mark	[]	Closson
+Mahi, Brock	[]	Closson
+Martin, Patrick	[]	Closson
+Mayfield, Jamal	[]	Closson
+Moore, Matthew	[]	Closson
+Mortimer, Ross	[]	Closson
+Nilsen, Bryn	[]	Closson
+Nilsen, Ryan	[]	Closson
+Obie, Malik	[]	Closson
+Overstreet Jr., Dwayne	[]	Closson
+Oviedo Cardenas, Sergio	[]	Closson
+Owens, Garett	[]	Closson
+Paige, Ryan	[]	Closson
+Peacock, Ethan	[]	Closson
+Peters Jr., Syrus	[]	Closson
+Peterson, Kirk	[]	Closson
+Radloff, Jay	[]	Closson
+Ray, Kirby	[]	Closson
+Remmenga, Bret	[]	Closson
+Reyes, Jaimes	[]	Closson
+Schlom, Ryan	[]	Closson
+Schwab, Zach	[]	Closson
+Shantz, Jackson	[]	Closson
+Sierra, Marcelo	[]	Closson
+Spiller, Montae	[]	Closson
+Stickler, Trey	[]	Closson
+Stronach, Jake	[]	Closson
+Suarez Garcia, Brayam	[]	Closson
+Thomas, Tripp	[]	Closson
+Trullas Medina, Sergi	[]	Closson
+Turner, Payton	[]	Closson
+West, Kyle	[]	Closson
+White, Kevin	[]	Closson
+White, Nicholas	[]	Closson
+Wines, Bryan	[]	Closson
+Young, Justin	[]	Closson
+Aina, Daniel	[]	Orion
+Alcorta, Jose	[]	Orion
+Anderson, Bryce	[]	Orion
+Betts, Deion	[]	Orion
+Bradley, Gage	[]	Orion
+Brooks, Charles	[]	Orion
+Brown, Jalen	[]	Orion
+Brummett, Trey	[]	Orion
+Carr, Jackson	[]	Orion
+Chapman, Gabe	[]	Orion
+Crank, Kody	[]	Orion
+Deemer, Jeremy	[]	Orion
+Del Rosario, Leandro	[]	Orion
+Fairchild, Seth	[]	Orion
+Finnell, Jayce	[]	Orion
+Georgiev, Georgi	[]	Orion
+Greene, Neico	[]	Orion
+Griffin, Ricky	[]	Orion
+Guerrero, Zac	[]	Orion
+Gutierrez, Isaiah	[]	Orion
+Hall, Brett	[]	Orion
+Harper, Austin	[]	Orion
+Hemingway, Tyrell	[]	Orion
+Herrera Cariello, Oswaldo	[]	Orion
+Heverling, Hayden	[]	Orion
+Lerma, Jose	[]	Orion
+Lopez, Sam	[]	Orion
+Marin, Shawn	[]	Orion
+Martin, Derek	[]	Orion
+Mason, Dillon	[]	Orion
+McKinney, Davin	[]	Orion
+Meyer, Trevor	[]	Orion
+Miller, Caleb	[]	Orion
+Moore, Stephen	[]	Orion
+Nunez, Arlington	[]	Orion
+Parker, D.J.	[]	Orion
+Perez, Chris	[]	Orion
+Quiles Jr., Jason	[]	Orion
+Radloff, Drew	[]	Orion
+Ramirez Villeda, Josue	[]	Orion
+Reyes, Jeff	[]	Orion
+Rodriguez, Alejandro	[]	Orion
+Roschitz, Steven	[]	Orion
+Schnoor, Weston	[]	Orion
+Shore, Thomas	[]	Orion
+Smith, Blake	[]	Orion
+Stueve, Jacob	[]	Orion
+Waddle, Jacob	[]	Orion
+Welch, Darrnell	[]	Orion
+Whittom, Tyler	[]	Orion
+Williams, Kalem	[]	Orion
+Winkle, Austin	[]	Orion
+Yanez Dabdoub, Tavo	[]	Orion
+Zeiger, John	[]	Orion
+Allen, Austin	[]	Powell
+Ansong, William	[]	Powell
+Bailey, Marlon	[]	Powell
+Banks, Brandon	[]	Powell
+Baska, Derek	[]	Powell
+Bassett, Samuel	[]	Powell
+Bedford, Jordan	[]	Powell
+Blentlinger, Cody	[]	Powell
+Bocardo, Jessie	[]	Powell
+Boles, Jacob	[]	Powell
+Bompart, Manuel	[]	Powell
+Boutwell, Scott	[]	Powell
+Brooks, Derrell	[]	Powell
+Brooks, Tirrell	[]	Powell
+Brunner, Timothy	[]	Powell
+Campbell, Lonnie	[]	Powell
+Chaker Buelvas, David	[]	Powell
+Coelho Miranda, Matheus	[]	Powell
+Collier, Cooper	[]	Powell
+Colon Marquez, Xavier	[]	Powell
+Constant, Trae	[]	Powell
+Cordonier, Derek	[]	Powell
+Crutcher, Darius	[]	Powell
+Cruz, Alex	[]	Powell
+Dipoto, Andrew	[]	Powell
+Dugar, Anderson	[]	Powell
+Frazier, Jamel	[]	Powell
+Frazier, Juan	[]	Powell
+Fuchs, Rayshawn	[]	Powell
+Genzen, Cody	[]	Powell
+Godfrey, Jess	[]	Powell
+Hanafan, Conner	[]	Powell
+Harder, Cameron	[]	Powell
+Hedrick, Shane	[]	Powell
+Heitzman, Jason	[]	Powell
+Hernandez, Angel	[]	Powell
+Hill, Joshua	[]	Powell
+Holland, Chasen	[]	Powell
+Johnson, Isaiah	[]	Powell
+Johnson, Robert	[]	Powell
+Johnson, Twon	[]	Powell
+Kanunnikov, Danil	[]	Powell
+King, Myles	[]	Powell
+Lawson, Anthony	[]	Powell
+Lemley, Trey	[]	Powell
+Leonard, McKinley	[]	Powell
+Lewis, Joe	[]	Powell
+Loften, Trey	[]	Powell
+Lovan, Lucky	[]	Powell
+Lukey, Jessee	[]	Powell
+Lukey, Jozef	[]	Powell
+Macali, Ian	[]	Powell
+Martin, Aidan	[]	Powell
+Martin, Dylan	[]	Powell
+McCracken, Tyler	[]	Powell
+Mercer, Stephen	[]	Powell
+Miles, Jeremiah	[]	Powell
+Mills, Dalton	[]	Powell
+Nelson, Dalton	[]	Powell
+Newman, Kenny	[]	Powell
+Niyonyishu, Alex	[]	Powell
+O'Neal, Tyler	[]	Powell
+Ortega, Nick	[]	Powell
+Palmer, Teddy	[]	Powell
+Pitt, Dylan	[]	Powell
+Ranney, Colton	[]	Powell
+Reynolds, Parker	[]	Powell
+Roxburgh, Chris	[]	Powell
+Salas Molina, William	[]	Powell
+Salazar, Zachary	[]	Powell
+Sampson, Bryan	[]	Powell
+Scafe, Taylor	[]	Powell
+Silva, Ceasar	[]	Powell
+Sneed, Davon	[]	Powell
+Spencer, Maceson	[]	Powell
+Stark, Ryan	[]	Powell
+Stetzel, Zacary	[]	Powell
+Stewart, Paul	[]	Powell
+Tappy, Jayce	[]	Powell
+Thielfoldt, Trenton	[]	Powell
+Thomas, Mathis	[]	Powell
+Uprety, Amar	[]	Powell
+Uribe Cogollos, Miguel	[]	Powell
+Wahl, Trenton	[]	Powell
+Waite, Josh	[]	Powell
+Wells, Jonte	[]	Powell
+Williams, Christopher	[]	Powell
+Williams, Deon	[]	Powell
+Wong, DJ	[]	Powell
+Andrews, Claire	[]	Solah
+Berg, Devan	[]	Solah
+Berg, Mackenzie	[]	Solah
+Bonilla, Jasmina	[]	Solah
+Brunner, Keeley	[]	Solah
+Brunner, Tiffany	[]	Solah
+Buckingham, Lydia	[]	Solah
+Buonarigo, Carley	[]	Solah
+Carey, Shelby	[]	Solah
+Cox, Shelby	[]	Solah
+Davis, Julie	[]	Solah
+Dockins, Alyssa	[]	Solah
+Doyle, Jessica	[]	Solah
+Figueroa Rivera, Jileannette	[]	Solah
+Gastel, Addison	[]	Solah
+Gaunder, Saige	[]	Solah
+Gaunder, Sierra	[]	Solah
+Gomez, Jade	[]	Solah
+Green, Kyla	[]	Solah
+Gully, Amy	[]	Solah
+Hampton, Madison	[]	Solah
+Hausmann, Ashley	[]	Solah
+Heverling, Hannah	[]	Solah
+Izevbigie, Arnelle	[]	Solah
+Krabbenhoft, Allie	[]	Solah
+Krueger, Hannah	[]	Solah
+Kuehl, Camryn	[]	Solah
+Lai, Audrey	[]	Solah
+Lapinski, Gabes	[]	Solah
+Lysinger, Haley	[]	Solah
+Malkoc, Lejla	[]	Solah
+Martin, Kendra	[]	Solah
+Martz, Emily	[]	Solah
+Massey, Kennedy	[]	Solah
+Matthiesen, Katelyn	[]	Solah
+McClain, Carley	[]	Solah
+McClain, Kirby	[]	Solah
+McClain, Shelby	[]	Solah
+McFadden, Phillisha	[]	Solah
+Montague, Maleta	[]	Solah
+Murphy, Hannah	[]	Solah
+Murray, Zada	[]	Solah
+Osen, Mallory	[]	Solah
+Pita, Azra	[]	Solah
+Plumridge, Lakiesha	[]	Solah
+Rankin, Hayley	[]	Solah
+Reynolds, Shannon	[]	Solah
+Rincon, Katie	[]	Solah
+Ruff, Jenci	[]	Solah
+Ruhland, Madison	[]	Solah
+Smith, Mackenzie	[]	Solah
+St Claire, Olivia	[]	Solah
+Stockford, Sam	[]	Solah
+Taylor, Emily	[]	Solah
+Te'o, Leata	[]	Solah
+Thomas, Shannon	[]	Solah
+Tovey, Carrie	[]	Solah
+Vaughn, Sydney	[]	Solah
+Volz, Darcy	[]	Solah
+Warner, Taylor	[]	Solah
+Winston, Tyeesha	[]	Solah
+Woodson, Caitlyn	[]	Solah
+Zabel, Lauren	[]	Solah
+Amador, Suzie	[]	Aponivi
+Austin, Mikayla	[]	Aponivi
+Barnes, Sarah	[]	Aponivi
+Bradford, Angela	[]	Aponivi
+Chambers, Lareece	[]	Aponivi
+Claytor, Breonna	[]	Aponivi
+Collins, Cerah	[]	Aponivi
+Comer, Samantha	[]	Aponivi
+Croll, Whitney	[]	Aponivi
+Dorrance, Sydney	[]	Aponivi
+Ebensberger, Alexis	[]	Aponivi
+Edmundson, MacKenzie	[]	Aponivi
+Ferguson, Danyl	[]	Aponivi
+Frofunga, Gracelyn	[]	Aponivi
+George, Dolly	[]	Aponivi
+Gernhart, Kara	[]	Aponivi
+Gonzalez, Karina	[]	Aponivi
+Gordon, Sarah	[]	Aponivi
+Gunter, Jessica	[]	Aponivi
+Haberthier, Amy	[]	Aponivi
+Hoffman, Anna	[]	Aponivi
+James, Laurie	[]	Aponivi
+Johannes, Bailey	[]	Aponivi
+King, Tanner	[]	Aponivi
+Kliegl, Mariah	[]	Aponivi
+Kneib, Megan	[]	Aponivi
+Koch, Leah	[]	Aponivi
+LaRusso, Brittani	[]	Aponivi
+Lipson, Ashley	[]	Aponivi
+Maloy, Mattie	[]	Aponivi
+Mei, Emily	[]	Aponivi
+Metcalf, Katelyn	[]	Aponivi
+Miller, Alexis	[]	Aponivi
+Mongrain, Sara	[]	Aponivi
+Norling, Rachel	[]	Aponivi
+Nowlin, Layne	[]	Aponivi
+O'Keefe, Keely	[]	Aponivi
+Okoro, Esther	[]	Aponivi
+Pepe, Ariel	[]	Aponivi
+Perkins, Anna	[]	Aponivi
+Perkins, Jourdan	[]	Aponivi
+Pitstick, Jenna	[]	Aponivi
+Reynolds, Elizabeth	[]	Aponivi
+Roberts, Eva	[]	Aponivi
+Roberts, Victoria	[]	Aponivi
+Robinson, Chelsea	[]	Aponivi
+Rodriguez, Daniela	[]	Aponivi
+Ronk, Whitney	[]	Aponivi
+Ruckman, Sara	[]	Aponivi
+Santiago, Mariah	[]	Aponivi
+Sheehy, Tara	[]	Aponivi
+Sherer, Melissa	[]	Aponivi
+Stephens, Amanda	[]	Aponivi
+Varner, Karrah	[]	Aponivi
+Wardle, Gracie	[]	Aponivi
+Work, Emily	[]	Aponivi
+Worring, Jessica	[]	Aponivi
+Yates, Lashaunda	[]	Aponivi
+Acland, Lucy	[]	Amici
+Balcazar Rodriguez, Nachaly	[]	Amici
+Bendorf, Lydia	[]	Amici
+Berry, Krista	[]	Amici
+Berstler, Kathryn	[]	Amici
+Blake, Analyn	[]	Amici
+Boling, Gabi	[]	Amici
+Bryant, Chyna	[]	Amici
+Cox, Kenzie	[]	Amici
+Dean, Alex	[]	Amici
+Everett, Leah	[]	Amici
+Ferrero, Sarah	[]	Amici
+Gardner, Katherine	[]	Amici
+Graham, Jackie	[]	Amici
+Haley, Nicole	[]	Amici
+Hanna, Jacey	[]	Amici
+Hill, Tamela	[]	Amici
+Horzuesky, Melissa	[]	Amici
+Johnson, Aryn	[]	Amici
+Joseph, Erica	[]	Amici
+Lancelotti, Alison	[]	Amici
+Larson, Haley	[]	Amici
+Lisk, Emma	[]	Amici
+Lovan, Jamaica	[]	Amici
+Lovan, Lexus	[]	Amici
+Malmberg, Kylie	[]	Amici
+McKinney, Shiane	[]	Amici
+Michael, Tessla	[]	Amici
+Miller, Tabi	[]	Amici
+Moreno, Irene	[]	Amici
+Perryman, Becca	[]	Amici
+Rees, Lexy	[]	Amici
+Rodriguez Manjarres, Kathy	[]	Amici
+Salois, Meredith	[]	Amici
+Salone, Alii	[]	Amici
+Santa Lucia, Chelsea	[]	Amici
+Sheridan, Amanda	[]	Amici
+Sheston, Hanna	[]	Amici
+Stafford, Judy	[]	Amici
+Stevenson, Sonja	[]	Amici
+Takeda, Brandy	[]	Amici
+Tonga, Anuh	[]	Amici
+West, Whitney	[]	Amici
+Wiedmier, Julia	[]	Amici
+Wright, Madelyn	[]	Amici
+Anderson, Stephanie	[]	Hanthorne
+Barrera, Monique	[]	Hanthorne
+Bendorf, Briana	[]	Hanthorne
+Birkenholz, Leslie	[]	Hanthorne
+Brandt, Jennifer	[]	Hanthorne
+Burkhiser, Kaylee	[]	Hanthorne
+DeVore, Shyanne	[]	Hanthorne
+Edgar, Abigail	[]	Hanthorne
+Farley, Hannah	[]	Hanthorne
+Finger, Sylvia	[]	Hanthorne
+Ford, Jillian	[]	Hanthorne
+Garcia, Destiny	[]	Hanthorne
+Greene, Sadie	[]	Hanthorne
+Gunn, Brittany	[]	Hanthorne
+Hagey, Madison	[]	Hanthorne
+Harper, Rachel	[]	Hanthorne
+Harrell, Aziza	[]	Hanthorne
+Hughes, Tina	[]	Hanthorne
+Jaggars, Maddie	[]	Hanthorne
+Jennings, Shelby	[]	Hanthorne
+Lynch, Cassidy	[]	Hanthorne
+McNabb, Caitlin	[]	Hanthorne
+Morgan, Kate	[]	Hanthorne
+Nicklaus, Kinzey	[]	Hanthorne
+Nolte, Katie	[]	Hanthorne
+Oney, Mancy	[]	Hanthorne
+Poppa, Megan	[]	Hanthorne
+Robles, Natalia	[]	Hanthorne
+Ruby, Savannah	[]	Hanthorne
+Santos Bermeo, Marianna	[]	Hanthorne
+Smith, April	[]	Hanthorne
+Thornton, Taylor	[]	Hanthorne
+Topliff, Krysten	[]	Hanthorne
+Triplett, Brianna	[]	Hanthorne
+Walters, Mallory	[]	Hanthorne
+Watt, Erin	[]	Hanthorne
+Webb, Katie	[]	Hanthorne
+Weir, Caitlyn	[]	Hanthorne
+Wells, Andreia	[]	Hanthorne
+Whitmer, Mikayla	[]	Hanthorne
+Yzaguirre, Hailey	[]	Hanthorne
+Zamzow, Samantha	[]	Hanthorne
+Bender, Natalie	[]	Dimora
+Binning, Brittany	[]	Dimora
+Cain, Kiara	[]	Dimora
+Caldwell, Christa	[]	Dimora
+Carter, Shian	[]	Dimora
+Chen, Chen	[]	Dimora
+Christian, Catherine	[]	Dimora
+Collins, Jaclynne	[]	Dimora
+Cox, Jenna	[]	Dimora
+Crowson, Jordan	[]	Dimora
+Crozier, Lexi	[]	Dimora
+Dawkins, Christacia	[]	Dimora
+Deitsch, Vanessa	[]	Dimora
+Dietrich, Morgan	[]	Dimora
+Farnsworth, Taylor	[]	Dimora
+Garcia, Maryse	[]	Dimora
+Griffin, Bre	[]	Dimora
+Hackett, Courtney	[]	Dimora
+Hernandez, Candy	[]	Dimora
+Hunzeker, Miranda	[]	Dimora
+Hypatidis, Jess	[]	Dimora
+Iida, Miko	[]	Dimora
+Konrad, Ashley	[]	Dimora
+Leal, Hailey	[]	Dimora
+Mariteragi, Nohea	[]	Dimora
+McIe, Stephanie	[]	Dimora
+Murtha, Shelby	[]	Dimora
+Reeves, Ashley	[]	Dimora
+Robins, Carley	[]	Dimora
+Sears, Kee Kee	[]	Dimora
+Shelton, Madalyn	[]	Dimora
+Sherer, Natalie	[]	Dimora
+Shim, Heather	[]	Dimora
+Smentkowski, Mekenzie	[]	Dimora
+Smith, Emily	[]	Dimora
+Staley, Madison	[]	Dimora
+Stoetzel, Abbey	[]	Dimora
+Stupak, Caitlyn	[]	Dimora
+Tamaki, Nagomi	[]	Dimora
+Vanterpool, Kristol	[]	Dimora
+Weeks, Caitlin	[]	Dimora
+Wiley, Jamiese	[]	Dimora
+Williams, Anna	[]	Dimora
+Bilges, Allysha	[]	Khiyah
+Cairns, Lexi	[]	Khiyah
+Campbell, Aulora	[]	Khiyah
+Cardiel, Kari	[]	Khiyah
+Cole, Alyssa	[]	Khiyah
+Collins, Mikayla	[]	Khiyah
+Corless, Shaylin	[]	Khiyah
+Cummings, Jessica	[]	Khiyah
+Damon, Margaret	[]	Khiyah
+Diaz Mares, Ale	[]	Khiyah
+Dotson, Brickell	[]	Khiyah
+Dotson, Melissa	[]	Khiyah
+Elliott, Shayna	[]	Khiyah
+Fortune, Breanna	[]	Khiyah
+Foster, Lindsay	[]	Khiyah
+Fronatt, Cassandra	[]	Khiyah
+Hahne, Ashley	[]	Khiyah
+Herman, Stephanie	[]	Khiyah
+Hiner, Hannah	[]	Khiyah
+Hurley, Gene	[]	Khiyah
+Johnson, Haley	[]	Khiyah
+Larson, Cassandra	[]	Khiyah
+Maloku, Fatbardha	[]	Khiyah
+Martin, Savannah	[]	Khiyah
+Mothershead, Truly	[]	Khiyah
+Persall, Catelin	[]	Khiyah
+Phoebus, Chelsey	[]	Khiyah
+Polson, Jady	[]	Khiyah
+Porter, Rachel	[]	Khiyah
+Pycior, Jessica	[]	Khiyah
+Rawson, Cheyanne	[]	Khiyah
+Reynolds, Michaela	[]	Khiyah
+Rivera, Cristal	[]	Khiyah
+Slobodyanik, Vicki	[]	Khiyah
+Snider, Nicole	[]	Khiyah
+Spears, Keirstyn	[]	Khiyah
+Weston, Alexandrya	[]	Khiyah
+White, CeCe	[]	Khiyah
+Williams, Hannah	[]	Khiyah
+Williams-Daugherty, Alexandra	[]	Khiyah
+Willingham, Philicia	[]	Khiyah
+Wouters, Hannah	[]	Khiyah
+Amirkhanli, Amina	[]	Paloma
+Beauchamp, Constance	[]	Paloma
+Bennetts, Jessie	[]	Paloma
+Branch, Keyonna	[]	Paloma
+Brummett, Courtney	[]	Paloma
+Carvalho Da Silva, Celeste	[]	Paloma
+Christensen, Bri	[]	Paloma
+Codilla, Megan	[]	Paloma
+Crump, Molly	[]	Paloma
+DeAngelis, Breanna	[]	Paloma
+Douglass, Sabrina	[]	Paloma
+Elliott, Jill	[]	Paloma
+Findora, Amanda	[]	Paloma
+Gascot, Sarimar	[]	Paloma
+Hartnett, Megan	[]	Paloma
+Hoerres, Rebecca	[]	Paloma
+Hosley, Dana	[]	Paloma
+Koutsouridis, Bethany	[]	Paloma
+Kutzly, Makayla	[]	Paloma
+Liedtke, Myrissa	[]	Paloma
+Linhart, Hallie	[]	Paloma
+Machado, Keisha	[]	Paloma
+Mills, Kyndall	[]	Paloma
+Negron, Christina	[]	Paloma
+Nelson, Brianna	[]	Paloma
+Peck, Sarah	[]	Paloma
+Quick, Amber	[]	Paloma
+Rath, Elizabeth	[]	Paloma
+Reisinger, Hannah	[]	Paloma
+Rieth, MacKenzie	[]	Paloma
+Ritner, Serra	[]	Paloma
+Rodriguez, Kellie	[]	Paloma
+Serrano-Garcia, Mariela	[]	Paloma
+Sieleman, Elizabeth	[]	Paloma
+Smith, Karli	[]	Paloma
+Smith, Megan	[]	Paloma
+Steehn, Sawyer	[]	Paloma
+Torres Rivero, Estefania	[]	Paloma
+Torres, Cristina	[]	Paloma
+Tripp, Courtney	[]	Paloma
+Vansickle, Kayla	[]	Paloma
+Victor, Katie	[]	Paloma
+Wood, Taylor	[]	Paloma
+Anderson, Champagne	[]	Sariah
+Bailey, Keishawna	[]	Sariah
+Baker, Nicole	[]	Sariah
+Baldwin, Shelby	[]	Sariah
+Black, La'Kendra	[]	Sariah
+Brewer, Shaye	[]	Sariah
+Briggs, Madison	[]	Sariah
+Burns, Karima	[]	Sariah
+Bussone, Hailee	[]	Sariah
+Cruz Gonzalez, Widalys	[]	Sariah
+De Jesus, Lian	[]	Sariah
+Dilts, Nikki	[]	Sariah
+Edwards, Amber	[]	Sariah
+El Otmany, Fatima	[]	Sariah
+Gilpatrick, Kristen	[]	Sariah
+Henson, Hannah	[]	Sariah
+Hoff, Becca	[]	Sariah
+Jaeger, Laura	[]	Sariah
+Johnsen, Cheyanne	[]	Sariah
+Jones, Abby	[]	Sariah
+Kroesen, Lexi	[]	Sariah
+Lane, Stephanie	[]	Sariah
+Leonard, Taylor	[]	Sariah
+Mamminga, Leah	[]	Sariah
+Mark, Lesley	[]	Sariah
+Menda, Becky	[]	Sariah
+Montalvo-Castillo, Pinky	[]	Sariah
+Morales, Jasmin	[]	Sariah
+O'Neal, Taylor	[]	Sariah
+Ortiz Casillas, Pilar	[]	Sariah
+Reed, Mikayla	[]	Sariah
+Reynolds, Erin	[]	Sariah
+Riddle, Nicole	[]	Sariah
+Roane, Avery	[]	Sariah
+Ross, Kaitlin	[]	Sariah
+Ruhlman, Ali	[]	Sariah
+Sai, Kiana	[]	Sariah
+Showers, Madison	[]	Sariah
+Sickels, Keslie	[]	Sariah
+Slayton, Sarah	[]	Sariah
+Smith, Sidnee	[]	Sariah
+Stevenson, Kyra	[]	Sariah
+Tracy, Katelynn	[]	Sariah
+Utley, Olivia	[]	Sariah
+VonGries, Amanda	[]	Sariah
+Wilson, Ashleigh	[]	Sariah
+Wood, Grace	[]	Sariah
+Alexander, Toya	[]	Shalom
+Beck, Elana	[]	Shalom
+Belt, Moriah	[]	Shalom
+Borison, Madison	[]	Shalom
+Byrd, Emma	[]	Shalom
+Castillo Ortiz, Vianey	[]	Shalom
+Cleland-Leighton, Laura	[]	Shalom
+Conway, Mikayla	[]	Shalom
+Cunningham, Tessa	[]	Shalom
+Douglas, Brooke	[]	Shalom
+Early, Rebecca	[]	Shalom
+Gavoli, Nina	[]	Shalom
+Goodwin, Hannah	[]	Shalom
+Gremminger, Katie	[]	Shalom
+Harmon, Zoe	[]	Shalom
+Holder, Lindsey	[]	Shalom
+Hoyka, Natasha	[]	Shalom
+Hull, Savea	[]	Shalom
+Jackson, Regan	[]	Shalom
+McGuire, Rheanna	[]	Shalom
+McVay, Dawn	[]	Shalom
+Myer, Marissa	[]	Shalom
+Nelms, Alice	[]	Shalom
+Newburg, Jordan	[]	Shalom
+Olson, Mackenzie	[]	Shalom
+Pensy Aba, Bianca	[]	Shalom
+Porter, Kiera	[]	Shalom
+Ramirez, Tatiana	[]	Shalom
+Rodriguez, Katie	[]	Shalom
+Ross, Makenzie	[]	Shalom
+Schaefer, Kayla	[]	Shalom
+Schiele, Ke'Auna	[]	Shalom
+Scott, Sidney	[]	Shalom
+Searcy, Kristen	[]	Shalom
+Sellars, Kiley	[]	Shalom
+Smith, Heather	[]	Shalom
+Sutt, Emily	[]	Shalom
+Valdez, Katie	[]	Shalom
+Van Weelden, Brooke	[]	Shalom
+Vassmer, Jessica	[]	Shalom
+Vinck, Laura	[]	Shalom
+Vinyard, Savannah	[]	Shalom
+Wagner, Savannah	[]	Shalom
+Webb, Tamara	[]	Shalom
+Wyatt, Bridget	[]	Shalom
+Ytell, Kate	[]	Shalom
+Zimmerman, Taylor	[]	Shalom
+Arnold, Cory	[]	Agape
+Botts, Dalton	[]	Agape
+Bradford, Karl	[]	Agape
+Buchia, Kyrus	[]	Agape
+Burton, Derek	[]	Agape
+Bush, Master	[]	Agape
+Cady, Griff	[]	Agape
+Chang Tun Jie, Oscar	[]	Agape
+Cole, Carter	[]	Agape
+Coleman, Kenneth	[]	Agape
+Coronado, Keone	[]	Agape
+Craven, Alex	[]	Agape
+Dancer, John	[]	Agape
+Detrick, Grant	[]	Agape
+Elakbawy, Omar	[]	Agape
+Fears, Joel	[]	Agape
+Fish, Tommy	[]	Agape
+Fragoso, Rolando	[]	Agape
+Freeman, Curtis	[]	Agape
+Garr, Cassin	[]	Agape
+Goff, Nathaniel	[]	Agape
+Graham, Dakota	[]	Agape
+Halls, Austin	[]	Agape
+Harden, Tyler	[]	Agape
+Harrell, Corey	[]	Agape
+Hensley, Steve	[]	Agape
+Hill, Mikey	[]	Agape
+Hill, Paul	[]	Agape
+Huddleston, Jordan	[]	Agape
+Kaopuiki, Andrew	[]	Agape
+Koch, Tanner	[]	Agape
+Lawrence, William	[]	Agape
+Lintz, Michael	[]	Agape
+Little, Staven	[]	Agape
+Liverant, Austin	[]	Agape
+Lopez-Saucedo, Jonathan	[]	Agape
+Lysinger, Jay	[]	Agape
+Martin, Carter	[]	Agape
+Mercer, Thomas	[]	Agape
+Olfus, Jordan	[]	Agape
+Peasley, Chris	[]	Agape
+Posateri, Adam	[]	Agape
+Razo Torres, Daniele	[]	Agape
+Roberts, Nathan	[]	Agape
+Robino, Ross	[]	Agape
+Rose, Blake	[]	Agape
+Ruiz, Hector	[]	Agape
+Rumbaugh, Andy	[]	Agape
+Salinas, AJ	[]	Agape
+Seward-Sherrod, Brandon	[]	Agape
+Sheeley, Rex	[]	Agape
+Shelton, Miles	[]	Agape
+Sloan, Evan	[]	Agape
+Stuber, Austin	[]	Agape
+Sweet, Blake	[]	Agape
+Swift, Charles	[]	Agape
+Tabor, Kason	[]	Agape
+Vallejo, Michael	[]	Agape
+Verwers, Trent	[]	Agape
+Welch, Christopher	[]	Agape
+Williams, Devin	[]	Agape
+Wilson, Eli	[]	Agape
+Wilson, Kyle	[]	Agape

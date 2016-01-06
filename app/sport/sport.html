@@ -1,0 +1,45 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1>Sport Events</h1>
+	</div>
+</md-toolbar>
+<md-content layout="column" ng-cloak style="overflow:hidden;">
+<!-- 	<form ng-submit="sportCtrl.add()" layout="column">
+	<div layout="row">
+		<md-input-container flex>
+			<label>Sport</label>
+			<input type="text" ng-model="sportCtrl.sport.name">
+		</md-input-container>
+		<md-input-container flex>
+			<md-checkbox ng-model="sportCtrl.sport.joint" aria-label="Joint Event">
+				Brother Sister Event
+			</md-checkbox>					
+		</md-input-container>		
+	</div>
+	<md-input-container>
+		<md-checkbox ng-checked="sportCtrl.exist(sportCtrl.nl)" ng-click="sportCtrl.toggle(sportCtrl.nl)">{{sportCtrl.nl.label}}</md-checkbox>
+	</md-input-container>
+	<md-input-container ng-repeat="l in sportCtrl.leagues">
+		<md-checkbox ng-checked="sportCtrl.exist(l)" ng-disabled="sportCtrl.noLeagues()" ng-click="sportCtrl.toggle(l)">{{l.label}}</md-checkbox>
+	</md-input-container>
+	<md-button type="submit">Add</md-button>
+</form> -->
+	<div ng-repeat="s in sportCtrl.sports">
+		<md-subheader class="md-primary">{{s.name}}</md-subheader>		
+		<md-grid-list
+			md-cols="3"
+			md-cols-sm="3" md-cols-gt-sm="3" md-cols-md="3" md-cols-gt-md="3"
+			md-row-height-gt-md="1:1" md-row-height="1:1"
+			md-gutter="4px" md-gutter-gt-sm="4px">
+			<md-grid-tile ng-repeat="(k,v) in s.league"
+				md-rowspan="1"
+				md-colspan="1"
+				md-colspan-sm="1"
+				ng-class="deepBlue" style="background: #8c9eff"
+				md-ink-ripple="#ffff8d"
+				ng-click="sportCtrl.goSport(s.$id,k)">
+				<md-grid-tile-footer  style="text-align: center"><h3><span ng-show="{{k == 'N'}}">{{s.name}}</span> <span ng-hide="{{k == 'N'}}">{{k}} League</span></h3></md-grid-tile-footer>
+			</md-grid-tile>
+		</md-grid-list>		
+	</div>
+</md-content>

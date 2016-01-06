@@ -1,0 +1,42 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<p>People of Graceland</p>
+	</div>
+</md-toolbar>
+<!-- <md-content layout-gt-sm="row" layout-sm="column"> -->
+<md-content layout="column">
+<!-- 	<md-content flex layout="column">
+		<form layout="column" flex>
+			<md-input-container flex>
+				<label>Name</label>
+				<input type="text" ng-model="peopleCtrl.personData.name">
+			</md-input-container>
+			<md-input-container flex>
+				<label>House</label>
+				<md-select ng-model="peopleCtrl.personData.house">
+					<md-option ng-repeat="h in peopleCtrl.houses" value="{{h.$id}}">{{h.name}}</md-option>
+				</md-select>
+			</md-input-container>
+			<md-button ng-click="peopleCtrl.addPerson()">Add</md-button>
+		</form>
+	</md-content> -->
+	<md-progress-linear md-mode="indeterminate" ng-hide="peopleCtrl.loaded"></md-progress-linear>
+	<md-input-container flex ng-show="peopleCtrl.loaded">
+		<label>&nbsp;</label>
+		<input type="text" ng-model="peopleCtrl.query.name" placeholder="Search people name">
+	</md-input-container>
+	<md-list flex ng-show="peopleCtrl.loaded">
+<!-- 		<md-subheader layout="column">
+			<md-input-container flex>
+				<label>&nbsp;</label>
+				<input type="text" ng-model="peopleCtrl.query.name" placeholder="Search people name">
+			</md-input-container>
+			{{peopleCtrl.people.length}}
+		</md-subheader> -->
+		<md-list-item ng-repeat="p in peopleCtrl.people | filter: peopleCtrl.query">
+			<div class="md-list-item-text">
+				<p>{{p.name}}</p>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

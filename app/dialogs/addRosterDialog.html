@@ -1,0 +1,34 @@
+<md-dialog aria-label="Update Roster" ng-cloak>
+	<form>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Update {{ardCtrl.getTeam(ardCtrl.thisTeam, 'name')}} Roster</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="ardCtrl.cancel()">
+					<md-icon md-svg-src="./icons/close_white.svg" aria-label="Close dialog"></md-icon>
+				</md-button>				
+			</div>
+		</md-toolbar>
+		<md-dialog-content>
+			<div class="md-dialog-content" layout="column">
+				<md-input-container flex>
+					<label>&nbsp;</label>
+					<input type="text" ng-model="ardCtrl.query.name" placeholder="Search Name">
+				</md-input-container>
+				<md-list flex>
+					<md-list-item class="md-2-line secondary-button-padding" ng-repeat="p in ardCtrl.people | filter: ardCtrl.query">
+						<md-checkbox ng-disabled="ardCtrl.inOtherRoster(p.team, 'disabled')" ng-model="ardCtrl.newMembers[p.$id]"></md-checkbox>													
+						<div class="md-list-item-text">
+							<h3>{{p.name}}</h3>
+							<p>{{ardCtrl.inOtherRoster(p.team)}}</p>
+						</div>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-list-item>
+				</md-list>
+			</div>
+		</md-dialog-content>
+		<md-dialog-actions layout="row">
+			<md-button ng-click="ardCtrl.add()" class="md-raised">Add</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
