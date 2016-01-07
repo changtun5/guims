@@ -17,12 +17,16 @@
 			{
 				label:'Prelim',
 				go: goPrelim,
-				bg: "#ffff8d"
+				bg: "#448aff",
+				disable: false,
+				cla : 'md-accent'
 			},
 			{
-				label:'Tournament',
+				label:'Tournament (Not Available)',
 				go: goTourny,
-				bg: "#b9f6ca"
+				bg: "#80d8ff",
+				disable: true,
+				cla: 'md-accent'
 			}
 		];
 

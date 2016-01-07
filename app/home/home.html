@@ -1,14 +1,30 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
-		<h3>Graceland University Intramurals</h3>
+		<md-button class="md-icon-button" hide-gt-md aria-label="Menu" ng-click="homeCtrl.menu()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
+		<h3>GU Intramurals</h3>
 		<span flex></span>
-		<md-button class="md-raised" ng-click="homeCtrl.showLogin($event)">Login</md-button>
+		<md-menu>
+			<md-button aria-label="Open account menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+				<md-icon md-menu origin md-svg-icon="./icons/account_circle.svg"></md-icon>
+			</md-button>
+			<md-menu-content width="2">
+				<md-menu-item ng-hide="homeCtrl.account.uid" ng-click="homeCtrl.showLogin($event)">
+					<md-button><span md-menu-align-target>Login</span></md-button>
+				</md-menu-item>			
+				<md-menu-item ng-show="homeCtrl.account.uid" ng-click="homeCtrl.logout()">
+					<md-button><span md-menu-align-target>Logout</span></md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+		<span class="md-subhead">{{homeCtrl.getUser(homeCtrl.account.uid, 'name')}}</span>
 	</div>
 </md-toolbar>
 <md-content layout="row">
 	<div flex></div>
 	<md-card flex>
-		<md-card-content>
+		<md-card-content flex layout="column">
 			<div flex>Under Development</div>
 		</md-card-content>
 	</md-card>

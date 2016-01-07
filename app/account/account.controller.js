@@ -9,6 +9,7 @@
 	function AccountController($mdDialog, Account){
 		var self = this;
 
+		self.errors = {};
 		self.account = [];
 
 		self.loginPage = {
@@ -17,11 +18,13 @@
 		}
 
 		account().then(function(){
+			Account.auth().$unauth();
 		});
 
 		self.login = login;
 		self.register = register;
 		self.cancel = cancel;
+		self.forgotPwd = forgotPwd;
 
 		function account(){
 			return Account.getRef().then(function(data){
@@ -31,19 +34,36 @@
 		}
 
 		function login(){
-			if(self.account.$indexFor(self.loginPage.email) < 0){
+			self.errors = {};
+			if(self.loginPage.email.length > 0 && self.loginPage.password.length > 0){
 				var data =  Account.auth();
-				console.log(data);
-				data.$authWithPassword(self.loginPage, function(error, userData){
-					if(error){
-						console.log('Error Login');
-					}else{
-						console.log('Success', userData.uid);
-						$mdDialog.hide('login');							
-					}
-				}, {remember: 'sessionOnly'});
+				//console.log(data.$getAuth());
+				data.$authWithPassword(self.loginPage, {remember: 'sessionOnly'}).then(function(data){
+					console.log('Logged');
+					//console.log(data);
+					$mdDialog.hide('login');
+				}).catch(function(error){
+					console.log('Error');
+					console.log(error.code);
+					self.errors[error.code] = true;
+				});
 			}else{
-				console.log('Email Taken');				
+				console.log('Blank Form');
+				self.errors.blank = true;				
+			}
+		}
+
+		function forgotPwd(){
+			self.errors = {};
+			if(self.loginPage.email.length > 0){
+				var data =Account.auth();
+				data.$resetPassword({email: self.loginPage.email}).then(function(){
+					self.errors['forgotSent'] = true;
+				}).catch(function(error){
+					self.errors[error.code] = true;
+				});
+			}else{
+				self.errors.forgotEmail = true;
 			}
 		}
 

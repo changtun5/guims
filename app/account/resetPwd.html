@@ -1,0 +1,38 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">Password Recovery</div>
+</md-toolbar>
+<md-content layout="column" layout-padding>
+	<form name="resetForm" flex ng-submit="resetForm.$valid && resetPwdCtrl.reset()" layout="column">
+		<div ng-messages="resetPwdCtrl.errors" style="color: red">
+			<div ng-message="pMatch">New password must be matched with confirm new password</div>
+			<div ng-message="INVALID_PASSWORD">Old password incorrect.</div>
+		</div>
+		<md-input-container flex>
+			<label>Old Password</label>
+			<input type="password" name="oPassword" required minlength="6" maxlength="20" ng-model="resetPwdCtrl.form.oldPassword">
+			<div ng-messages="resetForm.oPassword.$error">
+				<div ng-message="required">This field is required</div>
+				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 20 characters</div>
+			</div>
+		</md-input-container>		
+		<md-input-container flex>
+			<label>New Password</label>
+			<input type="password" name="password" required minlength="6" maxlength="20" ng-model="resetPwdCtrl.form.newPassword">
+			<div ng-messages="resetForm.password.$error">
+				<div ng-message="required">This field is required</div>
+				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 20 characters</div>
+			</div>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Confirm New Password</label>
+			<input type="password" name="nPassword" required minlength="6" maxlength="20" ng-model="resetPwdCtrl.form.cNewPassword">
+			<div ng-messages="resetForm.nPassword.$error">
+				<div ng-message="required">This field is required</div>
+				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 20 characters</div>
+			</div>
+		</md-input-container>
+		<div flex layout="row">
+			<md-button type="submit">Reset Password</md-button>
+		</div>		
+	</form>
+</md-content>

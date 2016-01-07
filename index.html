@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="./bower_components/angular-material-data-table/dist/md-data-table.min.css">
 	<link rel="stylesheet" href="./bower_components/sc-date-time/dist/sc-date-time.css">
 </head>
-<body ng-app="guims" layout="column">
+<body ng-app="guims" layout="row">
+	<side-nav layout="row"></side-nav>
 	<div ui-view role="main" flex></div>
 
 	<script src="./bower_components/angular/angular.min.js"></script>
@@ -29,6 +30,7 @@
 	<script src="./app/account/account.service.js"></script>
 	<script src="./app/account/account.controller.js"></script>
 	<script src="./app/account/register.controller.js"></script>
+	<script src="./app/account/resetPwd.controller.js"></script>
 
 	<script src="./app/attendance/attendance.service.js"></script>
 
@@ -54,6 +56,9 @@
 	<script src="./app/roster/roster.controller.js"></script>
 
 	<script src="./app/score/prelimScore.service.js"></script>
+
+	<script src="./app/sidenav/sidenav.service.js"></script>
+	<script src="./app/sidenav/sidenav.directive.js"></script>
 
 	<script src="./app/sport/sport.controller.js"></script>
 	<script src="./app/sport/sport.service.js"></script>

@@ -22,6 +22,12 @@
 				controller: 'RegisterController as regiCtrl'
 			})
 
+			.state('resetPwd', {
+				url: '/accountRecovery',
+				templateUrl: './app/account/resetPwd.html',
+				controller: 'ResetPwdController as resetPwdCtrl'
+			})
+
 			.state('house',{
 				url: '/house',
 				templateUrl: './app/house/house.html',

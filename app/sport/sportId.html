@@ -9,7 +9,7 @@
 		<md-grid-tile
 			md-rowspan="1" md-colspan="1"
 			ng-style="{background: gm.bg}"
-			ng-repeat="gm in sportIdCtrl.gridMenu" ng-click="gm.go()" md-ink-ripple>
+			ng-repeat="gm in sportIdCtrl.gridMenu" ng-click="gm.go()" md-ink-ripple ng-disabled="gm.disable">
 			<md-grid-tile-footer><h3>{{gm.label}}</h3></md-grid-tile-footer>
 		</md-grid-tile>
 	</md-grid-list>

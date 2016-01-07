@@ -1,5 +1,5 @@
 <md-dialog aria-label="User Login" ng-cloak>
-	<form>
+	<form name="loginForm" ng-submit="loginForm.$valid && accDialogCtrl.login()">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>User Login</h2>
@@ -11,19 +11,33 @@
 		</md-toolbar>
 		<md-dialog-content>
 			<div class="md-dialog-content" layout="column">
+				<div ng-messages="accDialogCtrl.errors" style="color:red" flex>
+					<div ng-message="blank">Please enter login combination</div>
+					<div ng-message="INVALID_PASSWORD">Incorrect password.</div>
+					<div ng-message="INVALID_EMAIL">Email is not registered.</div>
+					<div ng-message="forgotEmail">Please enter your email login.</div>
+					<div ng-message="forgotSent">Recovery email sent. It may take a few minutes.</div>
+				</div>
+				<div flex="10"></div>
 				<md-input-container flex>
 					<label>Email</label>
-					<input type="email" ng-model="accDialogCtrl.loginPage.email">
+					<input type="email" name="email" ng-model="accDialogCtrl.loginPage.email" required>
+					<div ng-messages="loginForm.email.$error">
+						<div ng-message-exp="['required', 'email']">Please enter your login email</div>
+					</div>
 				</md-input-container>
 				<md-input-container flex>
 					<label>Password</label>
-					<input type="password" ng-model="accDialogCtrl.loginPage.password">
+					<input type="password" required name="password" ng-model="accDialogCtrl.loginPage.password">
+					<div ng-messages="loginForm.password.$error">
+						<div ng-message="required">Please enter your password</div>
+					</div>
 				</md-input-container>
 			</div>
 		</md-dialog-content>
-		<md-dialog-actions layout="row">
-			<md-button class="md-raised" ng-click="accDialogCtrl.login()">Login</md-button>
-			<md-button class="md-raised" ng-click="accDialogCtrl.cancel()">Cancel</md-button>
+		<md-dialog-actions layout="row" layout-align="center center">
+			<md-button class="md-raised md-primary" type="submit">Login</md-button>
+			<md-button class="md-raised md-warn" ng-click="accDialogCtrl.forgotPwd()">Forgot Password</md-button>
 		</md-dialog-actions>
 	</form>
 </md-dialog>
