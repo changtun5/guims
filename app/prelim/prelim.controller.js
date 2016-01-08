@@ -6,10 +6,13 @@
 		.module('guims')
 		.controller('PrelimController', PrelimController);
 
-	PrelimController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim', 'PrelimScore'];
-	function PrelimController($state, Sport, Team, Entrant, Prelim, PrelimScore){
+	PrelimController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim', 'PrelimScore', 'Sidenav', 'Account'];
+	function PrelimController($state, Sport, Team, Entrant, Prelim, PrelimScore, Sidenav, Account){
 		var self = this;
-
+		self.leagueId = $state.params.league;
+		self.nav = Sidenav.open();
+		self.auth = Account.auth();
+		self.account = [];
 		self.debug = false;
 		self.entrant = [];
 		self.sport = [];
@@ -24,26 +27,53 @@
 
 		self.rrTable = [];
 
-		sport().then(function(){
-			entrant().then(function(){
-				teams().then(function(){
-					prelimRef().then(function(data){
-						if(data.length == 0){
-							noMatches();
-						}else{
-							prelimScoreRef().then(function(){
-								rrTable();
-							});
-						}					
+		account().then(function(){
+			sport().then(function(){
+				entrant().then(function(){
+					teams().then(function(){
+						prelimRef().then(function(data){
+							if(data.length == 0){
+								noMatches();
+							}else{
+								prelimScoreRef().then(function(){
+									rrTable();
+								});
+							}					
+						});
 					});
 				});
-			});
+			});			
 		});
 
 		self.goPrelimSlot = goPrelimSlot;
 		self.goEntrant = goEntrant;
 		self.formatDate = formatDate;
 		self.createRRTable = createRRTable;
+		self.isLoggedin = isLoggedin;
+		self.getAccount = getAccount;
+		self.isHigherUps = isHigherUps;
+		self.showAddPart = showAddPart;
+		self.showNoMatches = showNoMatches;
+		self.showCreateTableBut = showCreateTableBut;
+
+		function showCreateTableBut(){
+			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length > 0 && isHigherUps(getAccount('position'))) : false;
+		}
+
+		function showNoMatches(){
+			return (self.prelim.loaded)? (self.prelimRef.length < 1) : false;
+		}
+
+		function showAddPart(){
+			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length < 1 && isHigherUps(getAccount('position'))) : false;
+		}
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				return self.account;
+			});
+		}
 
 		function entrant(){
 			var s = $state.params.sportId;
@@ -80,6 +110,7 @@
 			var l = $state.params.league;
 			return Prelim.getPrelim(s,l).then(function(data){
 				self.prelimRef = data;
+				//console.log(self.prelimRef);
 				//console.log(data.length);
 				return self.prelimRef;
 			});
@@ -104,9 +135,11 @@
 		}
 
 		function createRRTable(){
-			return prelimScoreRef().then(function(){
-				return rrTable();
-			});			
+			if(isHigherUps(getAccount('position'))){
+				return prelimScoreRef().then(function(){
+					return rrTable();
+				});	
+			}		
 		}
 
 		function rrTable(){
@@ -461,12 +494,27 @@
 		}
 
 		function goPrelimSlot(slot){
-			var temp = {
-				sportId: $state.params.sportId,
-				league: $state.params.league,
-				slot: slot
+			if(self.auth.$getAuth != undefined && isHigherUps(getAccount('position'))){
+				var temp = {
+					sportId: $state.params.sportId,
+					league: $state.params.league,
+					slot: slot
+				}
+				$state.go('prelimInfo',temp);
 			}
-			$state.go('prelimInfo',temp);
+		}
+
+		function isHigherUps(pos){
+			var h = ['adm', 'adv', 'dir', 'boa'];
+			return (pos != '' && pos != undefined)? (h.indexOf(pos) > -1) : false;
+		}
+
+		function getAccount(key){
+			return (self.account.length > 0 && self.auth.$getAuth() != undefined)? self.account.$getRecord(self.auth.$getAuth().uid)[key] : '';
+		}
+
+		function isLoggedin(){
+			return (self.auth.$getAuth() != undefined);
 		}
 
 		function goEntrant(){

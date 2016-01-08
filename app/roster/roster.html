@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="rosterCtrl.nav()" hide-gt-md>
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<h3><span>{{rosterCtrl.getTeam(rosterCtrl.teamId,'name')}} </span>Roster</h3>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg"></md-icon>
 	</div>
 </md-toolbar>
 <md-content>

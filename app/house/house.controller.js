@@ -6,9 +6,18 @@
 		.module('guims')
 		.controller('HouseController', HouseController);
 
-	HouseController.$inject = ['$state', 'House'];
-	function HouseController($state, House){
+	HouseController.$inject = ['$state', 'House', 'Sidenav', 'Account'];
+	function HouseController($state, House, Sidenav, Account){
 		var self = this;
+
+		self.open = Sidenav.open();
+		self.auth = Account.auth();
+		self.account = Account.auth().$getAuth();
+		if(self.account == null){
+			$state.go('home');
+		}
+		self.guAccount = [];
+		self.loggedIn = loggedIn;
 
 		self.gender = [
 			{
@@ -40,8 +49,14 @@
 		self.gents = [];
 		self.allHalls = [];
 
-		houses().then(function(){
-			loaded();
+		guAccount().then(function(){
+			var higherUps = ['adm', 'adv', 'dir', 'boa'];
+			if(higherUps.indexOf(getGuAccount('position')) < 0){
+				$state.go('home');
+			}			
+			houses().then(function(){
+				loaded();
+			});			
 		});
 		//gents();
 		//ladies();
@@ -52,6 +67,22 @@
 
 		self.goHouseTeam = goHouseTeam;
 		self.goHouseStats = goHouseStats;
+		self.getGuAccount = getGuAccount;
+
+		function getGuAccount(key){
+			return (self.guAccount.length > 0 && self.auth.$getAuth() != undefined)? self.guAccount.$getRecord(self.account.uid)[key] : '';
+		}
+
+		function guAccount(){
+			return Account.getRef().then(function(data){
+				self.guAccount = data;
+				return self.guAccount;
+			});
+		}
+
+		function loggedIn(){
+			return (self.auth.$getAuth() != undefined)? true : false;
+		}
 
 		function add(){
 			var houseRef = House.ref.$ref().child(self.house.name.trim().toLowerCase().replace(/ /g,'_'));

@@ -5,9 +5,14 @@
 		.module('guims')
 		.controller('SportController', SportController);
 
-	SportController.$inject = ['$state', 'Sport'];
-	function SportController($state, Sport){
+	SportController.$inject = ['$state', 'Sport', 'Sidenav', 'Account'];
+	function SportController($state, Sport, Sidenav, Account){
 		var self = this;
+
+		self.nav = Sidenav.open();
+		self.auth = Account.auth().$getAuth();
+
+		self.loaded = false;
 
 		self.sport = {
 			name : '',
@@ -43,7 +48,9 @@
 		self.goSport = goSport;
 
 		self.sports = [];
-		sport();
+		sport().then(function(){
+			loaded();
+		});
 
 		function add(){
 			if(checkValid()){
@@ -56,7 +63,8 @@
 					var temp = {
 						name: self.sport.name.trim(),
 						type: 3,
-						league : league
+						league : league,
+						inSeason: false
 					}
 					sportRef.set(temp);
 				}else{
@@ -66,7 +74,8 @@
 					var temp = {
 						name : gent,
 						type: 2,
-						league : league
+						league : league,
+						inSeason : false
 					}
 					sportRef.set(temp);
 
@@ -75,7 +84,8 @@
 					temp = {
 						name: ladies,
 						type: 1,
-						league : league
+						league : league,
+						inSeason : false
 					}
 					sportRef.set(temp);
 
@@ -96,6 +106,7 @@
 			return Sport.getAllSport()
 				.then(function(data){
 					self.sports = data.sort(compare);
+					//console.log(self.sports);
 					return self.sports;
 				});
 		}
@@ -154,6 +165,11 @@
 
 		function goSport(id,l){
 			$state.go('sportId',{sportId:id,league:l})
+		}
+
+		function loaded(){
+			self.loaded = true;
+			return self.loaded;
 		}
 	}
 }());

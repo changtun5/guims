@@ -6,9 +6,10 @@
 		.module('guims')
 		.controller('RegisterController', RegisterController);
 
-	RegisterController.$inject = ['$state', 'Account', 'People', 'House'];
-	function RegisterController($state, Account, People, House){
+	RegisterController.$inject = ['$state', 'Account', 'People', 'House', 'Sidenav'];
+	function RegisterController($state, Account, People, House, Sidenav){
 		var self = this;
+		self.nav = Sidenav.open();
 		self.house = [];
 		self.pMatch = true;
 		self.account = [];
@@ -17,9 +18,18 @@
 		self.querySearch = querySearch;
 		self.getHouse = getHouse;
 
+		self.auth = Account.auth();
+
 		self.loaded = false;
 
 		account().then(function(){
+			if(self.auth.$getAuth() == undefined){
+				$state.go('home');
+			}else{
+				if(getAccount('position') != 'adm'){
+					$state.go('home');
+				}
+			}
 			house().then(function(){
 				people().then(function(){
 					loaded();
@@ -37,42 +47,50 @@
 			});
 		}
 
+		function getAccount(key){
+			return (self.account.length > 0)? self.account.$getRecord(self.auth.$getAuth().uid)[key] : '';
+		}
+
 		function returnCPassObj(error){
 			error['passMatch'] = !(self.form.password == self.form.cPassword);
 			return error;
 		}
 
 		function register(){
-			if(Object.keys(self.form).length == 5){
-				if(self.form.password == self.form.cPassword){
-					var auth = Account.auth();
-					return auth.$createUser(self.form).then(function(response){
-						var login = {
-							email: self.form.email,
-							password: self.form.password
-						}
-						return auth.$authWithPassword(login, {remember: 'sessionOnly'}).then(function(){
-							console.log(response);
-							delete self.form.cPassword;
-							delete self.form.password;
-							delete self.form.email;
-							self.form['id'] = self.form.name.id;
-							self.form.name = self.form.name.name
-							return Account.getRef().then(function(data){
-								data.$ref().child(response.uid).set(self.form);
-								return $state.go('home');
+			if(getAccount('position') == 'adm'){
+				if(Object.keys(self.form).length == 5){
+					if(self.form.password == self.form.cPassword){
+						var auth = Account.auth();
+						return auth.$createUser(self.form).then(function(response){
+							var login = {
+								email: self.form.email,
+								password: self.form.password
+							}
+							return auth.$authWithPassword(login, {remember: 'sessionOnly'}).then(function(){
+								console.log(response);
+								delete self.form.cPassword;
+								delete self.form.password;
+								delete self.form.email;
+								self.form['id'] = self.form.name.id;
+								self.form['house'] = self.form.name.house;
+								//console.log(self.form.name);							
+								self.form.name = self.form.name.name;
+								return Account.getRef().then(function(data){
+									data.$ref().child(response.uid).set(self.form);
+									return $state.go('home');
+								});
+							}).catch(function(error){
+								console.log('Login error');
 							});
-						}).catch(function(error){
-							console.log('Login error');
-						});
-					}, function(error){
-						console.log('error');
-						console.log(error);
-					});					
-				}else{
-					console.log('Passwords dont match');
-					self.pMatch = false;
-				}
+						}, function(error){
+							console.log('error');
+							console.log(error);
+						});					
+					}else{
+						console.log('Passwords dont match');
+						self.pMatch = false;
+					}
+				}				
 			}
 		}
 

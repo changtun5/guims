@@ -11,7 +11,35 @@
 			</md-button>			
 		</div>
 	</md-toolbar>
-	<md-content layout-padding>
-		
+	<md-content layout-padding layout="column">
+		<md-content layout="column" ng-show="navCtrl.showAccount()">
+			<div layout="row">
+				<p flex>{{navCtrl.getAccount('name')}}</p>
+				<div layout="column" flex>
+					<md-button class="md-primary md-raised">{{navCtrl.getPos(navCtrl.getAccount('position'))}}</md-button>				
+				</div>
+			</div>
+			<md-button class="md-warn" ng-click="navCtrl.logout()">Logout</md-button>
+		</md-content>
+		<md-content layout="column" ng-hide="navCtrl.showAccount()">
+			<md-button class="md-primary md-raised" ng-click="navCtrl.login()">Login</md-button>
+		</md-content>
+		<md-divider></md-divider>
+		<md-list>
+			<md-list-item ng-repeat="m in navCtrl.menu.normal" ng-click="navCtrl.go(m.state)">
+				<div class="md-list-item-text">
+					<p>{{m.label}}</p>
+				</div>
+			</md-list-item>
+		</md-list>
+		<md-divider></md-divider>
+		<md-list ng-show="navCtrl.auth.$getAuth()">
+			<md-subheader class="md-primary"><h2>Quick Links</h2></md-subheader>
+			<md-list-item ng-repeat="r in navCtrl.menu.reps" ng-click="navCtrl.go(r.state)">
+				<div class="md-list-item-text">
+					<p>{{r.label}}</p>
+				</div>
+			</md-list-item>
+		</md-list>
 	</md-content>
 </md-sidenav>

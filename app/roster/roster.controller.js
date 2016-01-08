@@ -6,12 +6,20 @@
 		.module('guims')
 		.controller('RosterController', RosterController);
 
-	RosterController.$inject = ['$state', 'Team', 'TeamMembers', 'People', 'Roster'];
-	function RosterController($state, Team, TeamMembers, People, Roster){
+	RosterController.$inject = ['$state', 'Team', 'TeamMembers', 'People', 'Roster', 'Account', 'Sidenav'];
+	function RosterController($state, Team, TeamMembers, People, Roster, Account, Sidenav){
 		var self = this;
+
+		self.auth = Account.auth().$getAuth();
+		if(self.auth == undefined){
+			$state.go('home');
+		}
+
+		self.nav = Sidenav.open();
 
 		self.houseId = $state.params.houseId;
 		self.teamId = $state.params.teamId;
+		self.account = [];
 		self.allTeams = [];
 		self.people = [];
 		self.teamRoster = {};
@@ -20,10 +28,15 @@
 		self.loaded = false;
 		self.saved = false;
 
-		allTeams().then(function(){
-			teamRoster().then(function(){
-				loaded();
-			});
+		account().then(function(){
+			allTeams().then(function(){
+				teamRoster().then(function(){
+					if(getAccount('house') != self.houseId && getAccount('position') == 'rep'){
+						$state.go('houseTeam',{houseId: getAccount('house')});
+					}
+					loaded();
+				});
+			});			
 		});
 
 		self.returnMinMaxSvg = returnMinMaxSvg;
@@ -31,6 +44,17 @@
 		self.saveRoster = saveRoster;
 		self.getTeam = getTeam;
 		self.getPeopleInTeam = getPeopleInTeam;
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				return self.account;
+			});
+		}
+
+		function getAccount(key){
+			return (self.account.length > 0 && self.auth != undefined)? self.account.$getRecord(self.auth.uid)[key] : '';
+		}
 
 		function allTeams(){
 			return Team.getAll().then(function(data){

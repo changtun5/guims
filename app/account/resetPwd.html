@@ -1,5 +1,12 @@
 <md-toolbar>
-	<div class="md-toolbar-tools">Password Recovery</div>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="resetPwdCtrl.nav()" hide-gt-md>
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>		
+		<h2>Password Recovery</h2>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="resetPwdCtrl.account.uid"></md-icon>		
+	</div>
 </md-toolbar>
 <md-content layout="column" layout-padding>
 	<form name="resetForm" flex ng-submit="resetForm.$valid && resetPwdCtrl.reset()" layout="column">
@@ -31,8 +38,8 @@
 				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 20 characters</div>
 			</div>
 		</md-input-container>
-		<div flex layout="row">
-			<md-button type="submit">Reset Password</md-button>
+		<div flex layout="row" layout="center center">
+			<md-button class="md-primary md-raised" type="submit">Reset Password</md-button>
 		</div>		
 	</form>
 </md-content>

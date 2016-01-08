@@ -14,14 +14,19 @@
 		self.users = [];
 		self.showLogin = showLogin;
 		self.logout = logout;
-
+		self.auth = Account.auth();
 		self.menu = Sidenav.open();
+		self.loggedIn = loggedIn;
 
 		self.getUser = getUser;
 
 		users().then(function(data){
 			getAccount();
 		});
+
+		function loggedIn(){
+			return (self.auth.$getAuth() != undefined)? true : false;
+		}
 
 		function showLogin(ev){
 			var fs = ($mdMedia('sm') || $mdMedia('xs'));

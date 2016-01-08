@@ -16,6 +16,12 @@
 				controller: 'HomeController as homeCtrl'
 			})
 
+			.state('login', {
+				url:'/login',
+				templateUrl: './app/account/login.html',
+				controller: "AccountController as accDialogCtrl"
+			})
+
 			.state('register',{
 				url: '/register',
 				templateUrl: './app/account/createUser.html',
@@ -40,11 +46,11 @@
 				controller: 'HouseTeamController as houseTeamCtrl'
 			})
 
-			.state('houseStats',{
-				url: '/house/{houseId}/stats',
-				templateUrl: './app/stats/houseStats.html',
-				controller: 'HouseStatsController as houseStatsCtrl'
-			})
+			// .state('houseStats',{
+			// 	url: '/house/{houseId}/stats',
+			// 	templateUrl: './app/stats/houseStats.html',
+			// 	controller: 'HouseStatsController as houseStatsCtrl'
+			// })
 
 			.state('sport', {
 				url: '/sport',

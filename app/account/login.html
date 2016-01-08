@@ -1,0 +1,39 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="accDialogCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>		
+		<h2>User Login</h2>
+	</div>
+</md-toolbar>
+<md-content layout="column" layout-padding>
+	<form name="loginForm" ng-submit="loginForm.$valid && accDialogCtrl.wlogin()" layout="column" layout-padding>		
+		<div ng-messages="accDialogCtrl.errors" style="color:red" flex>
+			<div ng-message="blank">Please enter login combination</div>
+			<div ng-message="INVALID_PASSWORD">Incorrect password.</div>
+			<div ng-message-exp="['INVALID_EMAIL','INVALID_USER']">Email is not registered.</div>
+			<div ng-message="forgotEmail">Please enter your email login.</div>
+			<div ng-message="forgotSent">Recovery email sent. It may take a few minutes.</div>
+		</div>
+		<div flex="10"></div>
+		<md-input-container flex>
+			<label>Email</label>
+			<input type="email" name="email" ng-model="accDialogCtrl.loginPage.email" required>
+			<div ng-messages="loginForm.email.$error">
+				<div ng-message-exp="['required', 'email']">Please enter your login email</div>
+			</div>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Password</label>
+			<input type="password" required name="password" ng-model="accDialogCtrl.loginPage.password">
+			<div ng-messages="loginForm.password.$error">
+				<div ng-message="required">Please enter your password</div>
+			</div>
+		</md-input-container>
+		<div layout="row" layout-xs="column" layout-align="center center">
+			<md-button class="md-raised md-primary" type="submit">Login</md-button>
+			<md-button class="md-raised md-warn" ng-click="accDialogCtrl.wforgotPwd()">Forgot Password</md-button>
+		</div>
+	</form>								
+</md-content>
+

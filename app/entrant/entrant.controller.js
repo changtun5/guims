@@ -6,8 +6,8 @@
 		.module('guims')
 			.controller('EntrantController', EntrantController);
 
-	EntrantController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim','PrelimScore'];
-	function EntrantController($state, Sport, Team, Entrant, Prelim, PrelimScore){
+	EntrantController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim','PrelimScore', 'Sidenav', 'Account'];
+	function EntrantController($state, Sport, Team, Entrant, Prelim, PrelimScore, Sidenav, Account){
 		var self = this;
 
 		self.sport = [];
@@ -16,28 +16,56 @@
 		self.prelim = [];
 		self.prelimScore = [];
 		self.league = $state.params.league;
-
+		self.nav = Sidenav.open();
 		self.enteredTeams = [];
 
 		self.allTeams = false;
 		self.loaded = false;
 
-		sport().then(function(){
-			validTeams().then(function(){
-				entrees().then(function(){
-					prelim().then(function(){
-						prelimScore().then(function(){
-							enteredTeams();
-							self.loaded = true;
-							return self.loaded;	
-						});
-					});					
+		self.account = [];
+		self.auth = Account.auth();
+		if(self.auth.$getAuth == undefined){
+			$state.go('home');
+		}
+
+		account().then(function(){
+			if(getAccount('position') == 'rep'){
+				$state.go('home');				
+			}
+			sport().then(function(){
+				validTeams().then(function(){
+					entrees().then(function(){
+						prelim().then(function(){
+							prelimScore().then(function(){
+								enteredTeams();
+								self.loaded = true;
+								return self.loaded;	
+							});
+						});					
+					});
 				});
-			});
+			});			
 		});
 
 		self.disableThis = disableThis;
 		self.saveTeams = saveTeams;
+		self.getAccount = getAccount;
+		self.isLoggedIn = isLoggedIn;
+
+		function getAccount(key){
+			return (self.account.length > 0 && isLoggedIn())? self.account.$getRecord(self.auth.$getAuth().uid)[key] : '';
+		}
+
+		function isLoggedIn(){
+			return (self.auth.$getAuth != undefined);
+		}
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				return self.account;
+			});
+		}
 
 		function entrees(){
 			var sportId = $state.params.sportId;
@@ -107,16 +135,19 @@
 		}
 
 		function saveTeams(){
-			var sportId = $state.params.sportId;
-			var league = $state.params.league;
-			var ref = Entrant.getRef().$ref().child(sportId+'/'+league);
-			for(var k in self.entrees){
-				if(!self.entrees[k]){
-					delete self.entrees[k];
+			var h = ['adm', 'adv', 'dir', 'boa'];
+			if(h.indexOf(getAccount('position')) > -1){
+				var sportId = $state.params.sportId;
+				var league = $state.params.league;
+				var ref = Entrant.getRef().$ref().child(sportId+'/'+league);
+				for(var k in self.entrees){
+					if(!self.entrees[k]){
+						delete self.entrees[k];
+					}
 				}
-			}
-			ref.set(self.entrees);
-			$state.go('sportId', {sportId: sportId, league: league});		
+				ref.set(self.entrees);
+				$state.go('sportId', {sportId: sportId, league: league});	
+			}	
 		}
 
 	}

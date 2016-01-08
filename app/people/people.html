@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" hige-gt-md ng-click="peopleCtrl.nav()" aria-label="Menu">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<p>People of Graceland</p>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="peopleCtrl.auth.$getAuth()"></md-icon>
 	</div>
 </md-toolbar>
 <!-- <md-content layout-gt-sm="row" layout-sm="column"> -->

@@ -1,18 +1,23 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
-		<h3>{{prelimCtrl.sport.name}} Preliminaries</h3>
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="prelimCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
+		<h3>{{prelimCtrl.sport.name}} <span ng-hide="prelimCtrl.leagueId == 'N'">{{prelimCtrl.leagueId}} League </span>Preliminaries</h3>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="prelimCtrl.isLoggedin()"></md-icon>
 	</div>
 </md-toolbar>
 <md-content layout="column">
 	<md-progress-linear md-mode="indeterminate" ng-hide="prelimCtrl.prelim.loaded" class="md-warn"></md-progress-linear>
-	<div layout="column" flex ng-show="prelimCtrl.prelim.loaded && prelimCtrl.prelimRef.length == 0">
-		<div layout="row" flex>
-			<div flex></div>
+	<div layout="column" flex ng-show="prelimCtrl.showNoMatches()">
+		<div layout="row" flex layout-padding>
+			<h3 flex>There are no games that has been scheduled</h3>
 		</div>
 		<div layout="row" flex>
 			<div flex></div>
-			<md-button class="md-raised md-accent" ng-hide="prelimCtrl.entrant.length <= 1" ng-click="prelimCtrl.createRRTable()">Create Table</md-button>
-			<md-button class="md-raised md-accent" ng-show="prelimCtrl.entrant.length <= 1" ng-click="prelimCtrl.goEntrant()">Add PArticipating Teams</md-button>			
+			<md-button class="md-raised md-accent" ng-show="prelimCtrl.showCreateTableBut()" ng-click="prelimCtrl.createRRTable()">Create Table</md-button>
+			<md-button class="md-raised md-accent" ng-show="prelimCtrl.showAddPart()" ng-click="prelimCtrl.goEntrant()">Add Participating Teams</md-button>			
 			<div flex></div>
 		</div>
 		<div layout="row" flex>
@@ -21,8 +26,14 @@
 	</div>
 	<md-tabs md-dynamic-height md-border-bottom class="md-accent" ng-show="prelimCtrl.prelim.loaded && prelimCtrl.prelimRef.length != 0">
 		<md-tab label="overall">
-			<md-content class="md-padding">
-				<md-table-container>
+			<md-content class="md-padding" layout="column">
+				<div layout="row" layout="center end">
+					<div flex></div>
+					<div layout="column" flex="50" flex-gt-xs="20">
+						<md-button class="md-primary md-raised" ng-show="prelimCtrl.isHigherUps(prelimCtrl.getAccount('position'))" ng-click="prelimCtrl.goEntrant()">Edit Teams</md-button>
+					</div>
+				</div>
+				<md-table-container flex>
 					<table md-table>
 						<thead md-head>
 							<tr md-row>

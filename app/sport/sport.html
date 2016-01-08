@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" hide-gt-md ng-click="sportCtrl.nav()" aria-label="Menu">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<h1>Sport Events</h1>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="sportCtrl.auth.uid"></md-icon>
 	</div>
 </md-toolbar>
 <md-content layout="column" ng-cloak style="overflow:hidden;">
@@ -24,22 +29,26 @@
 	</md-input-container>
 	<md-button type="submit">Add</md-button>
 </form> -->
-	<div ng-repeat="s in sportCtrl.sports">
-		<md-subheader class="md-primary">{{s.name}}</md-subheader>		
-		<md-grid-list
-			md-cols="3"
-			md-cols-sm="3" md-cols-gt-sm="3" md-cols-md="3" md-cols-gt-md="3"
-			md-row-height-gt-md="1:1" md-row-height="1:1"
-			md-gutter="4px" md-gutter-gt-sm="4px">
-			<md-grid-tile ng-repeat="(k,v) in s.league"
-				md-rowspan="1"
-				md-colspan="1"
-				md-colspan-sm="1"
-				ng-class="deepBlue" style="background: #8c9eff"
-				md-ink-ripple="#ffff8d"
-				ng-click="sportCtrl.goSport(s.$id,k)">
-				<md-grid-tile-footer  style="text-align: center"><h3><span ng-show="{{k == 'N'}}">{{s.name}}</span> <span ng-hide="{{k == 'N'}}">{{k}} League</span></h3></md-grid-tile-footer>
-			</md-grid-tile>
-		</md-grid-list>		
-	</div>
+	<md-progress-linear ng-hide="sportCtrl.loaded" md-mode="indeterminate"></md-progress-linear>
+	<md-content layout="column" ng-show="sportCtrl.loaded">
+		<div ng-repeat="s in sportCtrl.sports" ng-show="s.inSeason">
+			<md-subheader class="md-primary">{{s.name}}</md-subheader>		
+			<md-grid-list
+				md-cols="3"
+				md-cols-sm="3" md-cols-gt-sm="3" md-cols-md="3" md-cols-gt-md="3"
+				md-row-height-gt-md="1:1" md-row-height="1:1"
+				md-gutter="4px" md-gutter-gt-sm="4px">
+				<md-grid-tile ng-repeat="(k,v) in s.league"
+					md-rowspan="1"
+					md-colspan="1"
+					md-colspan-sm="1"
+					ng-class="deepBlue" style="background: #8c9eff"
+					md-ink-ripple="#ffff8d"
+					ng-click="sportCtrl.goSport(s.$id,k)">
+					<md-grid-tile-footer  style="text-align: center"><h3><span ng-show="{{k == 'N'}}">{{s.name}}</span> <span ng-hide="{{k == 'N'}}">{{k}} League</span></h3></md-grid-tile-footer>
+				</md-grid-tile>
+			</md-grid-list>		
+		</div>	
+	</md-content>
+
 </md-content>

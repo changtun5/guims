@@ -6,15 +6,17 @@
 		.module('guims')
 			.controller('PrelimInfoController', PrelimInfoController);
 
-	PrelimInfoController.$inject = ['$state', 'Prelim', 'PrelimScore', 'Team', 'Sport', 'Roster', 'People', 'Attendance', '$mdDialog', '$mdMedia'];
-	function PrelimInfoController($state, Prelim, PrelimScore, Team, Sport, Roster, People, Attendance, $mdDialog, $mdMedia){
+	PrelimInfoController.$inject = ['$state', 'Prelim', 'PrelimScore', 'Team', 'Sport', 'Roster', 'People', 'Attendance', '$mdDialog', '$mdMedia', 'Sidenav', 'Account'];
+	function PrelimInfoController($state, Prelim, PrelimScore, Team, Sport, Roster, People, Attendance, $mdDialog, $mdMedia, Sidenav, Account){
 		var self = this;
 
 		self.sportId = $state.params.sportId;
 		self.league = $state.params.league;
 		self.slot = $state.params.slot;
 		self.smallDevice = $mdMedia('xs') || $mdMedia('sm');
-
+		self.nav = Sidenav.open();
+		self.auth = Account.auth();
+		self.account = [];
 		self.pageData = {
 			loaded: false
 		};
@@ -28,22 +30,31 @@
 		self.att = [];
 		self.people = {};
 
-		prelim().then(function(data){
-			prelimScore().then(function(){
-				teams().then(function(){
-					sport().then(function(){
-						roster().then(function(){
-							people().then(function(){
-								att().then(function(){
-									attTotal().then(function(){
-										slotName();																									
+		account().then(function(){
+			prelim().then(function(data){
+				if(self.auth.$getAuth() == undefined){
+					$state.go('home');
+				}
+
+				if(self.getAccount('position') == 'rep'){
+					$state.go('prelim', {sportId: self.sportId, league: self.league});
+				}
+				prelimScore().then(function(){
+					teams().then(function(){
+						sport().then(function(){
+							roster().then(function(){
+								people().then(function(){
+									att().then(function(){
+										attTotal().then(function(){
+											slotName();																									
+										});
 									});
 								});
 							});
 						});
 					});
 				});
-			});
+			});			
 		});
 
 		self.saveDate = saveDate;
@@ -58,6 +69,21 @@
 		self.showAtt = showAtt;
 		self.saveEditAttIcon = saveEditAttIcon;
 		self.defaultWin = defaultWin;
+		self.getAccount = getAccount;
+		self.isLoggedIn = isLoggedIn;
+		self.isHigherUp = isHigherUp;
+
+		function isHigherUp(){
+			var h = ['adm', 'adv', 'dir', 'boa'];
+			return (h.indexOf(getAccount('position')) > -1);
+		}
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				return self.account;
+			});
+		}
 
 		function prelim(){
 			return Prelim.getPrelimSlot(self.sportId, self.league, self.slot)
@@ -149,16 +175,29 @@
 		}
 
 		function saveDate(date){
-			var temp = self.prelim[self.pageData['dateIdx']];
-			temp.$value = date.toString();
-			console.log(temp);
-			self.prelim[self.pageData['dateIdx']] = temp;
-			return self.prelim.$save(self.pageData['dateIdx']).then(function(){
-				prelim().then(function(){
-					return slotName();
+			if(isHigherUp()){
+				var temp = self.prelim[self.pageData['dateIdx']];
+				temp.$value = date.toString();
+				console.log(temp);
+				self.prelim[self.pageData['dateIdx']] = temp;
+				return self.prelim.$save(self.pageData['dateIdx']).then(function(){
+					prelim().then(function(){
+						return slotName();
+					});
 				});
-			});
+			}else{
+				//console.log('Not Board');
+			}
 		}
+
+		function isLoggedIn(){
+			return (self.auth.$getAuth() != undefined);
+		}
+
+		function getAccount(key){
+			return (self.account.length > 0 && isLoggedIn())? self.account.$getRecord(self.auth.$getAuth().uid)[key] : '';
+		}
+
 
 		function returnShowIcon(flag){
 			return (flag)? './icons/up.svg' : './icons/down.svg';
@@ -175,46 +214,50 @@
 		}
 
 		function saveScorecard(id){
-			return PrelimScore.getSlot(self.sportId, self.league, self.slot).then(function(data){
-				var thisTeam = {
-					id: id,
-					idx: data.$indexFor(id)
-				};
-				var theOtherTeam = {};
-				for(var i in data){
-					if(data[i].$id != undefined){
-						if(data[i].$id == thisTeam.id) continue;
-						theOtherTeam.id = data[i].$id;
-						theOtherTeam.idx = data.$indexFor(data[i].$id);
-						break;
-					}
-				}
-				//console.log(thisTeam);
-				//console.log(theOtherTeam);
+			if(isHigherUp()){
+				return PrelimScore.getSlot(self.sportId, self.league, self.slot).then(function(data){
+						var thisTeam = {
+							id: id,
+							idx: data.$indexFor(id)
+						};
+						var theOtherTeam = {};
+						for(var i in data){
+							if(data[i].$id != undefined){
+								if(data[i].$id == thisTeam.id) continue;
+								theOtherTeam.id = data[i].$id;
+								theOtherTeam.idx = data.$indexFor(data[i].$id);
+								break;
+							}
+						}
+						//console.log(thisTeam);
+						//console.log(theOtherTeam);
 
-				if(self.prelimScore[thisTeam.id].score == self.prelimScore[theOtherTeam.id].score){
-					data[thisTeam.idx].result = 'D';
-					data[theOtherTeam.idx].result = 'D';
-				}else{
-					var thisWon = self.prelimScore[thisTeam.id].score > self.prelimScore[theOtherTeam.id].score;
-					data[thisTeam.idx].result = (thisWon)? 'W' : 'L';
-					data[theOtherTeam.idx].result = (!thisWon)? 'W' : 'L';
-				}
+						if(self.prelimScore[thisTeam.id].score == self.prelimScore[theOtherTeam.id].score){
+							data[thisTeam.idx].result = 'D';
+							data[theOtherTeam.idx].result = 'D';
+						}else{
+							var thisWon = self.prelimScore[thisTeam.id].score > self.prelimScore[theOtherTeam.id].score;
+							data[thisTeam.idx].result = (thisWon)? 'W' : 'L';
+							data[theOtherTeam.idx].result = (!thisWon)? 'W' : 'L';
+						}
 
-				//Save thd current team scores (score, spPts, result)
-				//console.log(data[thisTeam.idx]);
-				data[thisTeam.idx].score = self.prelimScore[thisTeam.id].score;
-				data[thisTeam.idx].spPts = self.prelimScore[thisTeam.id].spPts;
+						//Save thd current team scores (score, spPts, result)
+						//console.log(data[thisTeam.idx]);
+						data[thisTeam.idx].score = self.prelimScore[thisTeam.id].score;
+						data[thisTeam.idx].spPts = self.prelimScore[thisTeam.id].spPts;
 
-				data.$save(thisTeam.idx);
-				data.$save(theOtherTeam.idx);
+						data.$save(thisTeam.idx);
+						data.$save(theOtherTeam.idx);
 
-				self.prelim[self.prelim.$indexFor('played')].$value = true;
-				self.prelim.$save(self.prelim.$indexFor('played'));
-				return prelimScore().then(function(){
-					return slotName();
-				});				
-			});
+						self.prelim[self.prelim.$indexFor('played')].$value = true;
+						self.prelim.$save(self.prelim.$indexFor('played'));
+						return prelimScore().then(function(){
+							return slotName();
+						});				
+					});
+			}else{
+				//console.log('Must Board Up')
+			}
 		}
 
 		function defaultWin(tId){
@@ -230,36 +273,40 @@
 		}
 
 		function saveAttendance(tId){
-			if(!self.pageData[tId].rosterSaved){
-				var temp = {};
-				for(var i in self.pageData[tId].att){
-					if(self.pageData[tId].att[i]){
-						temp[i] = true;
-					}
-				}
-				//console.log(temp);
-				if(Object.keys(self.pageData[tId].att).length > 0){
-					return Attendance.getPrelimBySportLeague(self.sportId, self.league).then(function(data){
-						var idx = data.$indexFor(self.slot);
-						if( idx == -1){
-							console.log(data.$ref().child(self.slot));
-							console.log(self.slot);
-							data.$ref().child(self.slot+'/'+tId).set(temp);
-						}else{
-							data[idx][tId] = (data[idx][tId] == undefined)? {} : data[idx][tId];
-							data[idx][tId] = temp;
-							data.$save(idx);
+			if(isHigherUp()){
+				if(!self.pageData[tId].rosterSaved){
+					var temp = {};
+					for(var i in self.pageData[tId].att){
+						if(self.pageData[tId].att[i]){
+							temp[i] = true;
 						}
-						return attTotal().then(function(){
-							self.pageData[tId].rosterSaved = true;
-							return self.pageData;
+					}
+					//console.log(temp);
+					if(Object.keys(self.pageData[tId].att).length > 0){
+						return Attendance.getPrelimBySportLeague(self.sportId, self.league).then(function(data){
+							var idx = data.$indexFor(self.slot);
+							if( idx == -1){
+								console.log(data.$ref().child(self.slot));
+								console.log(self.slot);
+								data.$ref().child(self.slot+'/'+tId).set(temp);
+							}else{
+								data[idx][tId] = (data[idx][tId] == undefined)? {} : data[idx][tId];
+								data[idx][tId] = temp;
+								data.$save(idx);
+							}
+							return attTotal().then(function(){
+								self.pageData[tId].rosterSaved = true;
+								return self.pageData;
+							});
 						});
-					});
+					}
+				}else{
+					self.pageData[tId].showRos = true;
+					self.pageData[tId].rosterSaved = false;
+					return self.pageData;
 				}
 			}else{
-				self.pageData[tId].showRos = true;
-				self.pageData[tId].rosterSaved = false;
-				return self.pageData;
+				//console.log('Board Up');
 			}
 		}
 
@@ -277,41 +324,45 @@
 					thisRoster: tr
 				}
 			};
-			$mdDialog.show(dialog).then(function(answer){
-				//console.log(self.people);
-				//console.log(self.roster);
-				//console.log(answer);
-				if(answer.length > 0){
-					return People.ref().then(function(data){
-						for(var i in answer){
-							//console.log(answer[i]);
-							data[data.$indexFor(answer[i])].team = (data[data.$indexFor(answer[i])].team == undefined)? {} : data[data.$indexFor(answer[i])].team;
-							data[data.$indexFor(answer[i])].team[teamId] = true;
-							data.$save(data.$indexFor(answer[i]));
-						}
-						return Roster.getRef().then(function(data){
-							if(data.$indexFor(teamId) < 0){
-								for(var k in answer){
-									data.$ref().child(teamId + '/' + answer[k]).set(true);
-								}
-							}else{
-								for(var j in answer){
-									data[data.$indexFor(teamId)] = (data[data.$indexFor(teamId)] == undefined)? {} : data[data.$indexFor(teamId)];
-									data[data.$indexFor(teamId)][answer[j]] = true;
-									data.$save(data.$indexFor(teamId));
-								}
+			if(isHigherUp()){
+				$mdDialog.show(dialog).then(function(answer){
+					//console.log(self.people);
+					//console.log(self.roster);
+					//console.log(answer);
+					if(answer.length > 0){
+						return People.ref().then(function(data){
+							for(var i in answer){
+								//console.log(answer[i]);
+								data[data.$indexFor(answer[i])].team = (data[data.$indexFor(answer[i])].team == undefined)? {} : data[data.$indexFor(answer[i])].team;
+								data[data.$indexFor(answer[i])].team[teamId] = true;
+								data.$save(data.$indexFor(answer[i]));
 							}
-							roster().then(function(){
-								people().then(function(){
-									slotName();															
+							return Roster.getRef().then(function(data){
+								if(data.$indexFor(teamId) < 0){
+									for(var k in answer){
+										data.$ref().child(teamId + '/' + answer[k]).set(true);
+									}
+								}else{
+									for(var j in answer){
+										data[data.$indexFor(teamId)] = (data[data.$indexFor(teamId)] == undefined)? {} : data[data.$indexFor(teamId)];
+										data[data.$indexFor(teamId)][answer[j]] = true;
+										data.$save(data.$indexFor(teamId));
+									}
+								}
+								roster().then(function(){
+									people().then(function(){
+										slotName();															
+									});
 								});
 							});
 						});
-					});
-				}
-			}, function(){
-				//console.log('Cancel');
-			});
+					}
+				}, function(){
+					//console.log('Cancel');
+				});
+			}else{
+				//console.log('Board Up');
+			}
 
 		}
 

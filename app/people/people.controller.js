@@ -6,10 +6,15 @@
 		.module('guims')
 		.controller('PeopleController', PeopleController);
 
-	PeopleController.$inject = ['$state', 'People', 'House'];
-	function PeopleController($state, People, House){
+	PeopleController.$inject = ['$state', 'People', 'House', 'Account', 'Sidenav'];
+	function PeopleController($state, People, House, Account, Sidenav){
 		var self = this;
-
+		self.nav = Sidenav.open();
+		self.auth = Account.auth();
+		if(self.auth.$getAuth() == undefined){
+			$state.go('home');
+		}
+		self.account = [];
 		self.people = [];
 		self.houses = [];
 
@@ -20,11 +25,23 @@
 		self.addPerson = addPerson;
 
 
-		people().then(function(){
-			// houses().then(function(){});
-			self.loaded = true;
-			return self.loaded;
+		account().then(function(){
+			people().then(function(){
+				// houses().then(function(){});
+				self.loaded = true;
+				return self.loaded;
+			});			
 		});
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				if(self.account.$getRecord(self.auth.$getAuth().uid).position != 'adm'){
+					$state.go('home');
+				}
+				return self.account;
+			});
+		}
 
 		function people(){
 			return People.ref()

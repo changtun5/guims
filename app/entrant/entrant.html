@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="entrantCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<h1>{{entrantCtrl.sport.name}} <span ng-show="{{entrantCtrl.league != 'N'}}">{{entrantCtrl.league}} League </span>Teams</h1>
+		<span flex></span>
+		<md-icon ng-show="entrantCtrl.isLoggedIn()" md-svg-src="./icons/account_circle.svg"></md-icon>
 	</div>
 </md-toolbar>
 <md-content>

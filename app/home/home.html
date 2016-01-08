@@ -5,7 +5,8 @@
 		</md-button>
 		<h3>GU Intramurals</h3>
 		<span flex></span>
-		<md-menu>
+		<md-icon ng-show="homeCtrl.loggedIn()" md-svg-icon="./icons/account_circle.svg"></md-icon>		
+<!-- 		<md-menu>
 			<md-button aria-label="Open account menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
 				<md-icon md-menu origin md-svg-icon="./icons/account_circle.svg"></md-icon>
 			</md-button>
@@ -18,7 +19,7 @@
 				</md-menu-item>
 			</md-menu-content>
 		</md-menu>
-		<span class="md-subhead">{{homeCtrl.getUser(homeCtrl.account.uid, 'name')}}</span>
+		<span class="md-subhead">{{homeCtrl.getUser(homeCtrl.account.uid, 'name')}}</span> -->
 	</div>
 </md-toolbar>
 <md-content layout="row">

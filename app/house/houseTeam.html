@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="houseTeamCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>		
 		<h3>House Teams</h3>
+		<span flex></span>
+		<md-icon aria-label="Account" ng-show="houseTeamCtrl.auth" md-svg-icon="./icons/account_circle.svg"></md-icon>		
 	</div>
 </md-toolbar>
 <md-content flex>

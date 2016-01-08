@@ -6,10 +6,14 @@
 		.module('guims')
 		.controller('ResetPwdController', ResetPwdController);
 
-	ResetPwdController.$inject = ['$state', 'Account'];
-	function ResetPwdController($state, Account){
+	ResetPwdController.$inject = ['$state', 'Account', 'Sidenav'];
+	function ResetPwdController($state, Account, Sidenav){
 		var self = this;
-
+		self.auth = Account.auth();
+		if(self.auth.$getAuth() == undefined){
+			$state.go('home');
+		}
+		self.nav = Sidenav.open();
 		self.account = {};
 		self.form = {};
 		self.errors = {};
@@ -22,7 +26,9 @@
 		function account(){
 			var a = Account.auth();
 			self.account = a.$getAuth();
+			//console.log(self.account);
 			if(self.account.password == undefined || !self.account.password.isTemporaryPassword){
+				console.log('Go Home');
 				$state.go('home');
 			}
 			return self.account;

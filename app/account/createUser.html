@@ -1,6 +1,11 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="regiCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<h2>Register</h2>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="regiCtrl.auth.$getAuth()"></md-icon>
 	</div>
 </md-toolbar>
 <md-content>
