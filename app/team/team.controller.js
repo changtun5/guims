@@ -6,9 +6,18 @@
 		.module('guims')
 		.controller('TeamController', TeamController);
 
-	TeamController.$inject = ['$state','Team', 'House', 'TeamMembers'];
-	function TeamController($state, Team, House, TeamMembers){
+	TeamController.$inject = ['$state','Team', 'House', 'TeamMembers', 'Sidenav', 'Account', 'Toast'];
+	function TeamController($state, Team, House, TeamMembers, Sidenav, Account, Toast){
 		var self = this;
+
+		self.account = [];
+		self.auth = Account.auth();
+		if(self.auth.$getAuth() == undefined){
+			$state.go('home');
+		}
+		self.nav = Sidenav.open();
+
+		self.showForm = false;
 
 		self.members = [{
 			teamId : 0
@@ -35,6 +44,9 @@
 
 		self.house = [];
 		self.teams = [];
+
+		self.teamList = [];
+
 		self.gents = [];
 		self.ladies = [];
 		self.existingTeams = [];
@@ -44,23 +56,79 @@
 			type: -1
 		};
 
-		house();
-		teams();
-		gents();
-		ladies();
-		existingTeams();	
+		self.loaded = false;
+
+		account().then(function(){
+			if(getAccount('position') == 'rep'){
+				$state.go('home');
+			}
+			house().then(function(){
+				teams().then(function(){
+					gents().then(function(){
+						ladies().then(function(){
+							existingTeams();
+							teamList().then(function(){
+								loaded();
+							});											
+						});
+					});
+				});
+			});			
+		});	
 
 		self.moreMember = moreMember;
+		self.lessMember = lessMember;
+		self.showMemberOption = showMemberOption;
 		self.add = add;
 		self.checkDup = checkDup;
 		self.checkTeamName = checkTeamName;
+		self.getAccount = getAccount;
+		self.toggleForm = toggleForm;
+
+		function account(){
+			return Account.getRef().then(function(data){
+				self.account = data;
+				return self.account;
+			});
+		}
+
+		function toggleForm(){
+			self.showForm = !self.showForm;
+		}
+
+		function getAccount(key){
+			var a = self.auth.$getAuth();
+			return (self.account.length > 0 && a)? self.account.$getRecord(a.uid)[key] : '';
+		}
+
+		function showMemberOption(id){
+			var out = true;
+			for(var i in self.members){
+				if(self.members[i].teamId == id){
+					out = false;
+					break;
+				}
+			}
+			return out;
+		}
 
 		function moreMember(){
 			self.members.push({teamId : 0});
 		}
 
+		function lessMember(){
+			self.members.splice(self.members.length - 1, 1);
+		}
+
+		function teamList(){
+			return Team.getAll().then(function(data){
+				self.teamList = data;
+				return self.teamList;
+			});
+		}
+
 		function add(){
-			if(!(self.checkTeamName(self.team.name) || self.members[0].teamId == 0)){
+			if(!(self.checkTeamName(self.team.name) || self.members[0].teamId == 0) && self.auth.$getAuth() && getAccount('position') != 'rep'){
 				var teamId = self.team.name.trim().toLowerCase().replace(/ /g,'_');
 				var teamRef = Team.ref.$ref().child(teamId);
 				var members = {};
@@ -81,6 +149,7 @@
 				}
 				teamRef.set(self.team);				
 				var ref = TeamMembers.ref.$ref().child(teamId);
+				Toast.show(self.team.name + ' added!');				
 				ref.set(members);
 				self.team = {
 					name: '',
@@ -91,6 +160,10 @@
 					teamId : 0
 				}];
 				teams();
+				teamList();
+				// self.showForm = false;
+			}else{
+
 			}
 		}
 
@@ -114,10 +187,12 @@
 		}
 
 		function checkTeamName(a){
-			for(var i in self.teams){
-				if(self.teams[i].toLowerCase().trim() == a.toLowerCase().trim()){
-					return true;
-				}
+			if(a){
+				for(var i in self.teams){
+					if(self.teams[i].toLowerCase().trim() == a.toLowerCase().trim()){
+						return true;
+					}
+				}				
 			}
 			return false;
 		}
@@ -170,6 +245,11 @@
 					self.existingTeams = data;
 					return self.existingTeams;
 				});
+		}
+
+		function loaded(){
+			self.loaded = true;
+			return self.loaded;
 		}
 
 	}

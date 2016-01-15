@@ -11,9 +11,9 @@
 			</md-button>			
 		</div>
 	</md-toolbar>
-	<md-content layout-padding layout="column">
-		<md-content layout="column" ng-show="navCtrl.showAccount()">
-			<div layout="row">
+	<md-content layout="column">
+		<md-content layout="column" ng-show="navCtrl.showAccount()" flex layout-padding>
+			<div layout="row" flex>
 				<p flex>{{navCtrl.getAccount('name')}}</p>
 				<div layout="column" flex>
 					<md-button class="md-primary md-raised">{{navCtrl.getPos(navCtrl.getAccount('position'))}}</md-button>				
@@ -34,8 +34,8 @@
 		</md-list>
 		<md-divider></md-divider>
 		<md-list ng-show="navCtrl.auth.$getAuth()">
-			<md-subheader class="md-primary"><h2>Quick Links</h2></md-subheader>
-			<md-list-item ng-repeat="r in navCtrl.menu.reps" ng-click="navCtrl.go(r.state)">
+			<md-subheader class="md-primary"><h4>Quick Links</h4></md-subheader>
+			<md-list-item ng-repeat="r in navCtrl.menu.reps" ng-click="navCtrl.go(r.state)" ng-show="navCtrl.showLinks(r.show)">
 				<div class="md-list-item-text">
 					<p>{{r.label}}</p>
 				</div>

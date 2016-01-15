@@ -11,9 +11,12 @@
 	function stateProvider($stateProvider, $urlRouterProvider){
 		$stateProvider
 			.state('home',{
+				// url: '/',
+				// templateUrl: './app/home/home.html',
+				// controller: 'HomeController as homeCtrl'
 				url: '/',
-				templateUrl: './app/home/home.html',
-				controller: 'HomeController as homeCtrl'
+				templateUrl: './app/sport/sport.html',
+				controller: 'SportController as sportCtrl'				
 			})
 
 			.state('login', {

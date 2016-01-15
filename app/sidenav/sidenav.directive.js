@@ -29,6 +29,7 @@
 			self.getAccount = getAccount;
 			self.showForRepsOnly = showForRepsOnly;
 			self.showForDirBoa = showForDirBoa;
+			self.showLinks = showLinks;
 
 			self.menu = {
 				normal: {
@@ -40,7 +41,23 @@
 				reps: {
 					house : {
 						label : 'House',
-						state: 'houseTeam'
+						state: 'houseTeam',
+						show: 'all'
+					},
+					teams : {
+						label : 'Create Teams',
+						state: 'team',
+						show: 'ups'
+					},
+					people : {
+						label: 'Student/Staff',
+						state: 'people',
+						show: 'ups'
+					},
+					account : {
+						label: 'Accounts',
+						state: 'register',
+						show: 'sup'
 					}
 				}
 			};
@@ -132,6 +149,24 @@
 			function showForDirBoa(pos){
 				return (pos == 'boa' || pos == 'dir' || pos == 'adv' || pos == 'adm')? true : false;
 			}
+
+			function showLinks(flag){
+				var out = false;
+				var ups = ['adm','adv','dir','boa'];
+				var sup = ['adm', 'adv', 'dir'];
+				if(flag == 'all'){
+					out = true;
+				}else if(flag == 'ups'){
+					out = (ups.indexOf(getAccount('position')) > -1);
+				}else if(flag == 'sup'){
+					out = (sup.indexOf(getAccount('position')) > -1);
+				}else if(flag == 'adm'){
+					out = (getAccount('position') == 'adm');
+				}
+
+				return out;
+			}
+
 		}
 
 	}

@@ -1,26 +1,52 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" hide-gt-md aria-label="Menu" ng-click="teamCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
 		<h1>New Team</h1>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="teamCtrl.auth.$getAuth()"></md-icon>
 	</div>
 </md-toolbar>
-<md-content ng-cloak>
-<form layout="column" ng-submit="teamCtrl.add()" name="newTeam">
-	<md-input-container>
-		<label><span ng-hide="teamCtrl.checkTeamName(teamCtrl.team.name)">Name</span><span class="md-warn" ng-show="teamCtrl.checkTeamName(teamCtrl.team.name)">Team Name Taken</span></label>
-		<input type="text" required ng-model="teamCtrl.team.name" name="teamName">
-	</md-input-container>
-	<md-input-container ng-repeat="m in teamCtrl.members">
-		<label>Member {{$index + 1}}</label>
-		<md-select ng-model="teamCtrl.members[$index].teamId">
-			<md-option ng-repeat="h in teamCtrl.house" value="{{h.$id}}">{{h.name}}</md-option>
-		</md-select>
-	</md-input-container>
-	<md-button ng-click="teamCtrl.moreMember()">More Member</md-button>
-	<md-input-container>
-		<md-radio-group ng-model="teamCtrl.team.league">
-			<md-radio-button ng-repeat="l in teamCtrl.leagues" value="{{l.value}}">{{l.label}}</md-radio-button>
-		</md-radio-group>
-	</md-input-container>	
-	<md-button type="submit">Add</md-button>			
-</form>
+<md-content ng-cloak layout="column">
+	<md-progress-linear md-mode="indeterminate" ng-hide="teamCtrl.loaded" flex></md-progress-linear>
+	<form layout="column" ng-submit="teamCtrl.add()" name="newTeam" ng-show="teamCtrl.loaded" flex layout-padding>
+		<md-input-container>
+			<label><span ng-hide="teamCtrl.checkTeamName(teamCtrl.team.name)">Name</span><span class="md-warn" ng-show="teamCtrl.checkTeamName(teamCtrl.team.name)">Team Name Taken</span></label>
+			<input type="text" required ng-model="teamCtrl.team.name" name="teamName">
+		</md-input-container>
+		<md-input-container ng-repeat="m in teamCtrl.members">
+			<label>Member {{$index + 1}}</label>
+			<md-select ng-model="teamCtrl.members[$index].teamId">
+				<md-option ng-repeat="h in teamCtrl.house" value="{{h.$id}}" required ng-show="teamCtrl.showMemberOption(h.$id)">{{h.name}}</md-option>
+			</md-select>
+		</md-input-container>
+		<div layout="row" layout-align="end end">
+			<md-button ng-click="teamCtrl.moreMember()" class="md-accent md-raised">Add</md-button>
+			<md-button class="md-warn md-raised" ng-click="teamCtrl.lessMember()" ng-disabled="teamCtrl.members.length == 1">Remove</md-button>			
+		</div>
+		<md-input-container>
+			<md-radio-group ng-model="teamCtrl.team.league">
+				<md-radio-button ng-repeat="l in teamCtrl.leagues" value="{{l.value}}">{{l.label}}</md-radio-button>
+			</md-radio-group>
+		</md-input-container>	
+		<md-button type="submit" class="md-primary md-raised">Create</md-button>
+		<!-- <md-button class="md-warn md-raised" ng-click="teamCtrl.toggleForm()">Cancel</md-button>		 -->
+	</form>
+	<!-- <div ng-hide="teamCtrl.showForm" layout="column">
+		<div layout="row" layout-align="end end" flex>
+			<md-button class="md-primary md-raised" ng-click="teamCtrl.toggleForm()">Add Team</md-button>
+		</div>
+		<md-input-container>
+			<label>&nbsp;</label>
+			<input type="text" ng-model="teamCtrl.query.name" placeholder="Team Name">
+		</md-input-container>
+		<md-list ng-show="teamCtrl.query.name.length > 0">
+			<md-list-item ng-repeat="tt in teamCtrl.teamList | filter: teamCtrl.query">
+				<div class="md-list-item-text">
+					<p>{{tt.name}}</p>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div> -->
 </md-content>

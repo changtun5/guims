@@ -10,38 +10,104 @@
 </md-toolbar>
 <!-- <md-content layout-gt-sm="row" layout-sm="column"> -->
 <md-content layout="column">
-<!-- 	<md-content flex layout="column">
-		<form layout="column" flex>
-			<md-input-container flex>
-				<label>Name</label>
-				<input type="text" ng-model="peopleCtrl.personData.name">
-			</md-input-container>
-			<md-input-container flex>
-				<label>House</label>
-				<md-select ng-model="peopleCtrl.personData.house">
-					<md-option ng-repeat="h in peopleCtrl.houses" value="{{h.$id}}">{{h.name}}</md-option>
-				</md-select>
-			</md-input-container>
-			<md-button ng-click="peopleCtrl.addPerson()">Add</md-button>
+	<md-progress-linear md-mode="indeterminate" ng-hide="peopleCtrl.loaded" flex></md-progress-linear>
+	
+	<md-content layout="column" ng-show="peopleCtrl.loaded">
+		<div layout="row" layout-padding flex layout-align="center center" ng-show="peopleCtrl.showOption()">
+			<md-button class="md-primary md-raised" ng-click="peopleCtrl.toggleNew()">New</md-button>
+			<md-button class="md-warn md-raised" ng-click="peopleCtrl.toggleEdit()">Edit</md-button>
+		</div>
+
+		<form layout="column" flex name="newppl" ng-show="peopleCtrl.showNew" ng-submit="newppl.$valid && peopleCtrl.addPerson()">
+			<md-toolbar class="md-hue-1">
+				<div class="md-toolbar-tools">
+					<p class="md-subhead">New People</p>
+					<span flex></span>
+					<md-button class="md-icon-button" aria-label="Cancel" ng-click="peopleCtrl.toggleNew()">
+						<md-icon md-svg-src="./icons/close_white.svg"></md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-content layout="column" layout-padding>
+				<md-input-container>
+					<label>First Name</label>
+					<input type="text" ng-model="peopleCtrl.personData.fName" required>
+				</md-input-container>
+				<md-input-container>
+					<label>Last Name</label>
+					<input type="text" ng-model="peopleCtrl.personData.lName" required>
+				</md-input-container>				
+				<md-input-container flex>
+					<label>House</label>
+					<md-select ng-model="peopleCtrl.personData.house" aria-label="house">
+						<md-option ng-repeat="h in peopleCtrl.houses" value="{{h.$id}}">{{h.name}}</md-option>
+					</md-select>
+				</md-input-container>
+				<md-button type="submit" class="md-primary md-raised">Add</md-button>
+			</md-content>
 		</form>
-	</md-content> -->
-	<md-progress-linear md-mode="indeterminate" ng-hide="peopleCtrl.loaded"></md-progress-linear>
-	<md-input-container flex ng-show="peopleCtrl.loaded">
+
+		<form layout="column" flex name="editppl" ng-show="peopleCtrl.showEdit" ng-submit="editppl.$valid && peopleCtrl.saveEdit()">
+			<md-toolbar class="md-hue-1">
+				<div class="md-toolbar-tools">
+					<p class="md-subhead">Edit Form</p>
+					<span flex></span>
+					<md-button class="md-icon-button" aria-label="Edit people" ng-click="peopleCtrl.toggleEdit()">
+						<md-icon md-svg-src="./icons/close_white.svg"></md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-content layout="column" layout-padding>
+				<md-autocomplete flex required
+					md-input-name="editPplField"
+					md-no-cache="peopleCtrl.noCache"
+					md-selected-item="peopleCtrl.editperson"
+					md-selected-item-change="peopleCtrl.editpersonSelected()"
+					md-search-text="peopleCtrl.searchText"
+					md-items="p in peopleCtrl.querySearchPeople(peopleCtrl.searchText)"
+					md-item-text="p.name"
+					md-floating-label="Person"
+					md-menu-class="autocomplete-custom-template">
+					<md-item-template>
+						<span class="item-title">
+							<span>{{p.name}}</span>
+						</span>
+						<span class="item-metadata">
+							<span class="item-metastat">
+								<i> - {{peopleCtrl.autoCompleteHouseDisplay(p.house)}}</i>
+							</span>
+						</span>
+					</md-item-template>
+				</md-autocomplete>
+				<md-input-container>
+					<label>Name</label>
+					<input type="text" ng-model="peopleCtrl.editperson.name" required ng-disabled="peopleCtrl.editperson == undefined">
+				</md-input-container>
+				<md-input-container>
+					<label>House</label>
+					<md-select required ng-model="peopleCtrl.editperson.eHouse" ng-disabled="peopleCtrl.editperson == undefined">
+						<md-option ng-repeat="h in peopleCtrl.houses" value="{{h.$id}}">{{h.name}}</md-option>
+					</md-select>
+				</md-input-container>
+				<div layout="row" layout-align="center center">
+					<md-button class="md-primary md-raised" type="submit" ng-disabled="peopleCtrl.editperson == undefined">Save</md-button>
+					<md-button class="md-warn md-raised" ng-disabled="peopleCtrl.editperson == undefined" ng-click="peopleCtrl.deletePerson()">Remove</md-button>
+				</div>
+			</md-content>
+		</form>
+
+	</md-content>
+
+
+<!-- 	<md-input-container flex ng-show="peopleCtrl.loaded">
 		<label>&nbsp;</label>
 		<input type="text" ng-model="peopleCtrl.query.name" placeholder="Search people name">
 	</md-input-container>
 	<md-list flex ng-show="peopleCtrl.loaded">
-<!-- 		<md-subheader layout="column">
-			<md-input-container flex>
-				<label>&nbsp;</label>
-				<input type="text" ng-model="peopleCtrl.query.name" placeholder="Search people name">
-			</md-input-container>
-			{{peopleCtrl.people.length}}
-		</md-subheader> -->
 		<md-list-item ng-repeat="p in peopleCtrl.people | filter: peopleCtrl.query">
 			<div class="md-list-item-text">
 				<p>{{p.name}}</p>
 			</div>
 		</md-list-item>
-	</md-list>
+	</md-list> -->
 </md-content>

@@ -8,8 +8,8 @@
 		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="regiCtrl.auth.$getAuth()"></md-icon>
 	</div>
 </md-toolbar>
-<md-content>
-	<md-progress-linear md-mode="indeterminate" ng-hide="regiCtrl.loaded"></md-progress-linear>
+<md-content layout-padding layout="column">
+	<md-progress-linear md-mode="indeterminate" ng-hide="regiCtrl.loaded" flex></md-progress-linear>
 	<form name="registerForm" layout="column" ng-show="regiCtrl.loaded">
 		<md-autocomplete flex required
 			md-input-name="nameField"
@@ -66,6 +66,6 @@
 				<div ng-message-exp="['minlength', 'maxlength']">Password must be 6 to 20 characters</div>
 			</div>
 		</md-input-container>
-		<md-button ng-click="regiCtrl.register()">Register</md-button>
+		<md-button ng-click="regiCtrl.register()" class="md-raised md-primary">Register</md-button>
 	</form>
 </md-content>

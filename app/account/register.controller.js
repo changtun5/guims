@@ -6,8 +6,8 @@
 		.module('guims')
 		.controller('RegisterController', RegisterController);
 
-	RegisterController.$inject = ['$state', 'Account', 'People', 'House', 'Sidenav'];
-	function RegisterController($state, Account, People, House, Sidenav){
+	RegisterController.$inject = ['$state', 'Account', 'People', 'House', 'Sidenav', 'Toast'];
+	function RegisterController($state, Account, People, House, Sidenav, Toast){
 		var self = this;
 		self.nav = Sidenav.open();
 		self.house = [];
@@ -26,7 +26,7 @@
 			if(self.auth.$getAuth() == undefined){
 				$state.go('home');
 			}else{
-				if(getAccount('position') != 'adm'){
+				if(!isSup()){
 					$state.go('home');
 				}
 			}
@@ -57,8 +57,10 @@
 		}
 
 		function register(){
-			if(getAccount('position') == 'adm'){
+			if(isSup()){
+				console.log('in register');
 				if(Object.keys(self.form).length == 5){
+					console.log('validation donde');
 					if(self.form.password == self.form.cPassword){
 						var auth = Account.auth();
 						return auth.$createUser(self.form).then(function(response){
@@ -66,21 +68,17 @@
 								email: self.form.email,
 								password: self.form.password
 							}
-							return auth.$authWithPassword(login, {remember: 'sessionOnly'}).then(function(){
-								console.log(response);
-								delete self.form.cPassword;
-								delete self.form.password;
-								delete self.form.email;
-								self.form['id'] = self.form.name.id;
-								self.form['house'] = self.form.name.house;
-								//console.log(self.form.name);							
-								self.form.name = self.form.name.name;
-								return Account.getRef().then(function(data){
-									data.$ref().child(response.uid).set(self.form);
-									return $state.go('home');
-								});
-							}).catch(function(error){
-								console.log('Login error');
+							delete self.form.cPassword;
+							delete self.form.password;
+							delete self.form.email;
+							self.form['id'] = self.form.name.id;
+							self.form['house'] = self.form.name.house;
+							//console.log(self.form.name);							
+							self.form.name = self.form.name.name;
+							return Account.getRef().then(function(data){
+								data.$ref().child(response.uid).set(self.form);
+								Toast.show('Account created');
+								$state.go('home');
 							});
 						}, function(error){
 							console.log('error');
@@ -135,6 +133,14 @@
 		function loaded(){
 			self.loaded = true;
 			return self.loaded;
+		}
+
+		function isSup(){
+			var h = ['adm','adv','dir'];
+			if(h.indexOf(getAccount('position')) > -1){
+				return true;
+			}
+			return false;
 		}
 
 	}
