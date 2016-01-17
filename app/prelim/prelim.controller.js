@@ -6,8 +6,8 @@
 		.module('guims')
 		.controller('PrelimController', PrelimController);
 
-	PrelimController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim', 'PrelimScore', 'Sidenav', 'Account'];
-	function PrelimController($state, Sport, Team, Entrant, Prelim, PrelimScore, Sidenav, Account){
+	PrelimController.$inject = ['$state', 'Sport', 'Team', 'Entrant', 'Prelim', 'PrelimScore', 'Sidenav', 'Account','$mdMedia', '$mdDialog'];
+	function PrelimController($state, Sport, Team, Entrant, Prelim, PrelimScore, Sidenav, Account, $mdMedia, $mdDialog){
 		var self = this;
 		self.leagueId = $state.params.league;
 		self.nav = Sidenav.open();
@@ -55,9 +55,10 @@
 		self.showAddPart = showAddPart;
 		self.showNoMatches = showNoMatches;
 		self.showCreateTableBut = showCreateTableBut;
+		self.showConfirmClear = showConfirmClear;
 
 		function showCreateTableBut(){
-			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length > 0 && isHigherUps(getAccount('position'))) : false;
+			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length > 1 && isHigherUps(getAccount('position'))) : false;
 		}
 
 		function showNoMatches(){
@@ -65,7 +66,30 @@
 		}
 
 		function showAddPart(){
-			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length < 1 && isHigherUps(getAccount('position'))) : false;
+			return (self.prelim.loaded && self.auth.$getAuth() != null)? (self.entrant.length < 2 && isHigherUps(getAccount('position'))) : false;
+		}
+
+		function showConfirmClear(ev){
+			var confirm = $mdDialog.confirm()
+				.title('Clear Preliminaries')
+				.textContent('Are you sure you want to clear all games and its information?')
+				.ariaLabel('Clear Prelim')
+				.targetEvent(ev)
+				.ok('Yes')
+				.cancel('No');
+			$mdDialog.show(confirm).then(function(){
+				//console.log('Yes');
+				return PrelimScore.getSportScore($state.params.sportId).then(function(psRef){
+					psRef.$remove(psRef.$indexFor(self.leagueId)).then(function(){
+						return Prelim.getSportPrelim($state.params.sportId).then(function(pRef){
+							//console.log(pRef);
+							pRef.$remove(pRef.$indexFor(self.leagueId));
+						});
+					});
+				});
+			}, function(){
+				console.log('Keep Data');
+			});
 		}
 
 		function account(){
@@ -161,9 +185,8 @@
 								name : self.teams[j].name + " vs " + self.teams[i].name,
 								played: false,
 								date: '-',
-								refs: '-',
-								scorekeeper: '-',
 								protest: '-',
+								audience: 0
 							};
 							self.prelimSlot['slot'+(temp[j]).toString()][self.teams[j].$id] = true;
 							self.prelimSlot['slot'+(temp[j]).toString()][self.teams[i].$id] = true;

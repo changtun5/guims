@@ -14,11 +14,14 @@
 		<div layout="row" flex layout-padding>
 			<h3 flex>There are no games that has been scheduled</h3>
 		</div>
-		<div layout="row" flex>
-			<div flex></div>
-			<md-button class="md-raised md-accent" ng-show="prelimCtrl.showCreateTableBut()" ng-click="prelimCtrl.createRRTable()">Create Table</md-button>
-			<md-button class="md-raised md-accent" ng-show="prelimCtrl.showAddPart()" ng-click="prelimCtrl.goEntrant()">Add Participating Teams</md-button>			
-			<div flex></div>
+		<div layout="row" flex layout-align="center center">
+			<div layout="column" ng-show="prelimCtrl.showCreateTableBut()">
+				<md-button class="md-raised md-accent" ng-click="prelimCtrl.createRRTable()">Create Table</md-button>
+				<md-button class="md-raised md-primary" ng-click="prelimCtrl.goEntrant()">Edit Teams</md-button>
+			</div>			
+			<div layout="column" ng-show="prelimCtrl.showAddPart()">
+				<md-button class="md-raised md-accent" ng-click="prelimCtrl.goEntrant()">Add Participating Teams</md-button>
+			</div>
 		</div>
 		<div layout="row" flex>
 			<div flex></div>
@@ -32,6 +35,9 @@
 					<div layout="column" flex="50" flex-gt-xs="20">
 						<md-button class="md-primary md-raised" ng-show="prelimCtrl.isHigherUps(prelimCtrl.getAccount('position'))" ng-click="prelimCtrl.goEntrant()">Edit Teams</md-button>
 					</div>
+					<div layout="column" flex="50" flex-gt-xs="20">
+						<md-button class="md-warn md-raised" ng-show="prelimCtrl.isHigherUps(prelimCtrl.getAccount('position'))" ng-click="prelimCtrl.showConfirmClear($event)">Clear</md-button>
+					</div>					
 				</div>
 				<md-table-container flex>
 					<table md-table>

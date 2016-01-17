@@ -1,0 +1,32 @@
+<md-dialog aria-label="Scorekeeper Staff" ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{staffScorCtrl.sport}}</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="staffScorCtrl.close()">
+				<md-icon md-svg-src="./icons/close_white.svg" aria-label="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content>
+		<md-subheader>
+			<p>{{staffScorCtrl.matchName}} Scorekeeper Staff</p>
+			<md-divider></md-divider>			
+		</md-subheader>
+		<md-content layout-padding layout="column">
+			<md-input-container>
+				<label>Person</label>
+				<input type="text" ng-model="staffScorCtrl.query.name">
+			</md-input-container>
+			<md-list>
+				<md-list-item ng-repeat="p in staffScorCtrl.people | filter:staffScorCtrl.query" class="secondary-button-padding">
+					<p>{{p.name}}</p>
+					<md-checkbox class="md-secondary" ng-model="staffScorCtrl.scorPPl[p.$id]"></md-checkbox>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</md-dialog-content>
+	<md-dialog-actions layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="staffScorCtrl.saveScor()">Save</md-button>
+	</md-dialog-actions>
+</md-dialog>

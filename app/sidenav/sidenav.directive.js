@@ -45,7 +45,7 @@
 						show: 'all'
 					},
 					teams : {
-						label : 'Create Teams',
+						label : 'Teams',
 						state: 'team',
 						show: 'ups'
 					},

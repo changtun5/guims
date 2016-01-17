@@ -17,8 +17,6 @@
 		}
 		self.nav = Sidenav.open();
 
-		self.showForm = false;
-
 		self.members = [{
 			teamId : 0
 		}];
@@ -45,8 +43,6 @@
 		self.house = [];
 		self.teams = [];
 
-		self.teamList = [];
-
 		self.gents = [];
 		self.ladies = [];
 		self.existingTeams = [];
@@ -66,10 +62,9 @@
 				teams().then(function(){
 					gents().then(function(){
 						ladies().then(function(){
-							existingTeams();
-							teamList().then(function(){
-								loaded();
-							});											
+							existingTeams().then(function(){
+								loaded();								
+							});
 						});
 					});
 				});
@@ -84,12 +79,27 @@
 		self.checkTeamName = checkTeamName;
 		self.getAccount = getAccount;
 		self.toggleForm = toggleForm;
+		self.goNewTeam = goNewTeam;
+		self.goEditTeam = goEditTeam;
+		self.cancel = cancel;
+
+		function cancel(){
+			$state.go('team');
+		}
 
 		function account(){
 			return Account.getRef().then(function(data){
 				self.account = data;
 				return self.account;
 			});
+		}
+
+		function goNewTeam(){
+			$state.go('newTeam');
+		}
+
+		function goEditTeam(tId){
+			$state.go('editTeam', {teamId: tId});
 		}
 
 		function toggleForm(){
@@ -120,17 +130,10 @@
 			self.members.splice(self.members.length - 1, 1);
 		}
 
-		function teamList(){
-			return Team.getAll().then(function(data){
-				self.teamList = data;
-				return self.teamList;
-			});
-		}
-
 		function add(){
 			if(!(self.checkTeamName(self.team.name) || self.members[0].teamId == 0) && self.auth.$getAuth() && getAccount('position') != 'rep'){
-				var teamId = self.team.name.trim().toLowerCase().replace(/ /g,'_');
-				var teamRef = Team.ref.$ref().child(teamId);
+				// var teamId = self.team.name.trim().toLowerCase().replace(/ /g,'_');
+				// var teamRef = Team.ref.$ref().child(teamId);
 				var members = {};
 				for (var i in self.members){
 					if(!(self.members[i].teamId in Object.keys(members))){
@@ -147,20 +150,14 @@
 						}					
 					}
 				}
-				teamRef.set(self.team);				
-				var ref = TeamMembers.ref.$ref().child(teamId);
-				Toast.show(self.team.name + ' added!');				
-				ref.set(members);
-				self.team = {
-					name: '',
-					type: -1,
-					league: 'N'					
-				};
-				self.members = [{
-					teamId : 0
-				}];
-				teams();
-				teamList();
+				return self.existingTeams.$add(self.team).then(function(newTeam){
+					var newId = newTeam.key();
+					return TeamMembers.getRef().then(function(tmData){
+						tmData.$ref().child(newId).set(members);
+						Toast.show(self.team.name + ' added!');				
+						$state.go('team');								
+					});				
+				});
 				// self.showForm = false;
 			}else{
 

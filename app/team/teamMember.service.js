@@ -11,9 +11,14 @@
 		var ref = $firebaseArray(new Firebase(FirebaseUrl + 'teamMember'));
 		return {
 			ref : ref,
+			getRef: getRef,
 			getTeamMembers : getTeamMembers,
 			getTeamsWithHouse : getTeamsWithHouse,
 			getTeamsWithHouseBulk : getTeamsWithHouseBulk
+		}
+
+		function getRef(){
+			return $firebaseArray(new Firebase(FirebaseUrl + 'teamMember')).$loaded();
 		}
 
 		function getTeamMembers(teamId){

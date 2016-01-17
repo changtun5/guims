@@ -124,8 +124,74 @@
 				</md-content>
 			</md-tab>
 			<md-tab label="Staff" ng-disabled="!prelimInfoCtrl.pageData['dateSet']">
-
+				<md-content layout="column" layout-gt-sm="row" layout-margin>
+					<md-list flex class="md-whiteframe-1dp">
+						<md-list-item class="secondary-button-padding">
+							<div class="md-list-item-text">
+								<h4>Paid</h4>
+							</div>
+							<md-button class="md-icon-button md-secondary" aria-label="Edit Paid" ng-click="prelimInfoCtrl.showStaffPaidDialog($event)">
+								<md-icon md-svg-src="./icons/edit.svg"></md-icon>
+							</md-button>
+							<md-divider></md-divider>
+						</md-list-item>
+						<md-list-item ng-repeat="sp in prelimInfoCtrl.staffPaid">
+							<div class="md-list-item-text">
+								<p>{{prelimInfoCtrl.getPersonInfo(sp.$id, 'name')}}</p>
+							</div>
+						</md-list-item>
+					</md-list>
+					<md-list flex class="md-whiteframe-1dp">
+						<md-list-item class="secondary-button-padding">
+							<div class="md-list-item-text">
+								<h4>Volunteer</h4>
+							</div>
+							<md-button class="md-icon-button md-secondary" aria-label="Edit Volunteer" ng-click="prelimInfoCtrl.showStaffVoluDialog($event)">
+								<md-icon md-svg-src="./icons/edit.svg"></md-icon>
+							</md-button>							
+							<md-divider></md-divider>
+						</md-list-item>
+						<md-list-item ng-repeat="sv in prelimInfoCtrl.staffVolu">
+							<div class="md-list-item-text">
+								<p>{{prelimInfoCtrl.getPersonInfo(sv.$id, 'name')}}</p>
+							</div>
+						</md-list-item>						
+					</md-list>
+					<md-list flex class="md-whiteframe-1dp">
+						<md-list-item class="secondary-button-padding">
+							<div class="md-list-item-text">
+								<h4>Scorekeeper</h4>
+							</div>
+							<md-button class="md-icon-button md-secondary" aria-label="Edit Scorekeeper" ng-click="prelimInfoCtrl.showStaffScoreDialog($event)">
+								<md-icon class="md-secondary" md-svg-src="./icons/edit.svg"></md-icon>
+							</md-button>							
+							<md-divider></md-divider>
+						</md-list-item>
+						<md-list-item ng-repeat="ss in prelimInfoCtrl.staffScor">
+							<div class="md-list-item-text">
+								<p>{{prelimInfoCtrl.getPersonInfo(ss.$id, 'name')}}</p>
+							</div>
+						</md-list-item>							
+					</md-list>
+				</md-content>
 			</md-tab>
+			<md-tab label="Audience" ng-disabled="!prelimInfoCtrl.pageData['dateSet']">
+				<md-content layout="column" layout-padding>
+					<form name="audienceForm" layout="column" ng-submit="audienceForm.$valid && prelimInfoCtrl.saveAudience()">
+						<md-input-container>
+							<label># Audience</label>
+							<input type="number" min="0" name="total" required ng-model="prelimInfoCtrl.pageData['audience']">
+							<div ng-messages="audienceForm.total.$error">
+								<div ng-message="required">Please enter number of audience</div>
+								<div ng-message="min">Minimum is 0</div>
+							</div>
+						</md-input-container>
+						<div layout="row" flex layout-align="end end">
+							<md-button type="submit" class="md-primary md-raised">Save</md-button>
+						</div>
+					</form>
+				</md-content>
+			</md-tab>			
 		</md-tabs>
 	</md-content>
 </md-content>

@@ -1,0 +1,38 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" hide-gt-md ng-click="newTeamCtrl.nav()">
+			<md-icon md-svg-src="./icons/menu.svg"></md-icon>
+		</md-button>
+		<h2>New Team</h2>
+		<span flex></span>
+		<md-icon md-svg-src="./icons/account_circle.svg" ng-show="newTeamCtrl.auth.$getAuth()"></md-icon>
+	</div>
+</md-toolbar>
+<md-content ng-cloak layout="column" layout-padding>
+	<md-progress-linear md-mode="indeterminate" ng-hide="newTeamCtrl.loaded" flex></md-progress-linear>
+	<form layout="column" ng-submit="newTeamCtrl.add()" name="newTeam" ng-show="newTeamCtrl.loaded" flex layout-padding>
+		<div flex layout="row" layout-align="end end">
+			<md-button class="md-warn md-raised" ng-click="newTeamCtrl.cancel()">Cancel</md-button>
+		</div>
+		<md-input-container>
+			<label><span ng-hide="newTeamCtrl.checkTeamName(newTeamCtrl.team.name)">Name</span><span class="md-warn" ng-show="newTeamCtrl.checkTeamName(newTeamCtrl.team.name)">Team Name Taken</span></label>
+			<input type="text" required ng-model="newTeamCtrl.team.name" name="teamName">
+		</md-input-container>
+		<md-input-container ng-repeat="m in newTeamCtrl.members">
+			<label>Member {{$index + 1}}</label>
+			<md-select ng-model="newTeamCtrl.members[$index].teamId">
+				<md-option ng-repeat="h in newTeamCtrl.house" value="{{h.$id}}" required ng-show="newTeamCtrl.showMemberOption(h.$id)">{{h.name}}</md-option>
+			</md-select>
+		</md-input-container>
+		<div layout="row" layout-align="end end">
+			<md-button ng-click="newTeamCtrl.moreMember()" class="md-accent md-raised">Add</md-button>
+			<md-button class="md-warn md-raised" ng-click="newTeamCtrl.lessMember()" ng-disabled="newTeamCtrl.members.length == 1">Remove</md-button>			
+		</div>
+		<md-input-container>
+			<md-radio-group ng-model="newTeamCtrl.team.league">
+				<md-radio-button ng-repeat="l in newTeamCtrl.leagues" value="{{l.value}}">{{l.label}}</md-radio-button>
+			</md-radio-group>
+		</md-input-container>	
+		<md-button type="submit" class="md-primary md-raised">Create</md-button>
+	</form>	
+</md-content>

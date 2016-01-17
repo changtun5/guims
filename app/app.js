@@ -97,6 +97,18 @@
 				controller: 'TeamController as teamCtrl'
 			})
 
+			.state('newTeam', {
+				url: '/team/new',
+				templateUrl: './app/team/newTeam.html',
+				controller: 'TeamController as newTeamCtrl'
+			})
+
+			.state('editTeam',{
+				url: '/team/{teamId}',
+				templateUrl: './app/team/editTeam.html',
+				controller: 'EditTeamController as editTeamCtrl'
+			})
+
 			.state('roster',{
 				url: '/house/{houseId}/teams/{teamId}',
 				templateUrl: './app/roster/roster.html',

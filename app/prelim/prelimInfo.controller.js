@@ -6,8 +6,8 @@
 		.module('guims')
 			.controller('PrelimInfoController', PrelimInfoController);
 
-	PrelimInfoController.$inject = ['$state', 'Prelim', 'PrelimScore', 'Team', 'Sport', 'Roster', 'People', 'Attendance', '$mdDialog', '$mdMedia', 'Sidenav', 'Account'];
-	function PrelimInfoController($state, Prelim, PrelimScore, Team, Sport, Roster, People, Attendance, $mdDialog, $mdMedia, Sidenav, Account){
+	PrelimInfoController.$inject = ['$state', 'Prelim', 'PrelimScore', 'Team', 'Sport', 'Roster', 'People', 'Attendance', '$mdDialog', '$mdMedia', 'Sidenav', 'Account', 'Staff', 'Toast'];
+	function PrelimInfoController($state, Prelim, PrelimScore, Team, Sport, Roster, People, Attendance, $mdDialog, $mdMedia, Sidenav, Account, Staff, Toast){
 		var self = this;
 
 		self.sportId = $state.params.sportId;
@@ -29,6 +29,10 @@
 		self.attTotal = {};
 		self.att = [];
 		self.people = {};
+		self.staffPaid = [];
+		self.staffVolu = [];
+		self.staffScor = [];
+		self.everyone = [];
 
 		account().then(function(){
 			prelim().then(function(data){
@@ -46,7 +50,15 @@
 								people().then(function(){
 									att().then(function(){
 										attTotal().then(function(){
-											slotName();																									
+											staffPaid().then(function(){
+												staffVolu().then(function(){
+													staffScor().then(function(){
+														everyone().then(function(){
+															slotName();																																						
+														});
+													});
+												});
+											});
 										});
 									});
 								});
@@ -72,6 +84,33 @@
 		self.getAccount = getAccount;
 		self.isLoggedIn = isLoggedIn;
 		self.isHigherUp = isHigherUp;
+		self.getPrelim = getPrelim;
+		self.saveAudience = saveAudience;
+		self.showStaffPaidDialog = showStaffPaidDialog;
+		self.showStaffVoluDialog = showStaffVoluDialog;
+		self.showStaffScoreDialog = showStaffScoreDialog;
+		self.getPersonInfo = getPersonInfo;
+
+		function getPersonInfo(id, k){
+			return (self.everyone.length > 0 && self.everyone.$indexFor(id) > -1)? self.everyone.$getRecord(id)[k] : '';
+		}
+
+
+		function saveAudience(){
+			self.prelim.$getRecord('audience').$value = self.pageData['audience'];
+			self.prelim.$save(self.prelim.$indexFor('audience')).then(function(){
+				Toast.show('# Audience saved');
+			});
+		}
+
+		function getPrelim(k){
+			if(k == 'audience'){
+				if(self.prelim.$indexFor('audience') < 0){
+					self.prelim.$ref().child('audience').set(0);
+				}
+			}
+			return (self.prelim.length > 0)? self.prelim.$getRecord(k).$value : '';
+		}
 
 		function isHigherUp(){
 			var h = ['adm', 'adv', 'dir', 'boa'];
@@ -85,10 +124,18 @@
 			});
 		}
 
+		function everyone(){
+			return People.ref().then(function(data){
+				self.everyone = data;
+				return self.everyone;
+			});
+		}
+
 		function prelim(){
 			return Prelim.getPrelimSlot(self.sportId, self.league, self.slot)
 				.then(function(data){
 					self.prelim = data;
+					//console.log(self.prelim);
 					return self.prelim;
 				});
 		}
@@ -170,6 +217,27 @@
 			});
 		}
 
+		function staffPaid(){
+			return Staff.getPrelimRefSlotPaid(self.sportId, self.league, self.slot).then(function(data){
+				self.staffPaid = data;
+				return self.staffPaid;
+			});
+		}
+
+		function staffVolu(){
+			return Staff.getPrelimRefSlotVolun(self.sportId, self.league, self.slot).then(function(data){
+				self.staffVolu = data;
+				return self.staffVolu;
+			});
+		}
+
+		function staffScor(){
+			return Staff.getPrelimRefSlotScoreKeep(self.sportId, self.league, self.slot).then(function(data){
+				self.staffScor = data;
+				return self.staffScor;
+			});
+		}				
+
 		function getPeople(id, key){
 			return (self.pageData['loaded']) ? self.people[id][key] : '';
 		}
@@ -178,7 +246,7 @@
 			if(isHigherUp()){
 				var temp = self.prelim[self.pageData['dateIdx']];
 				temp.$value = date.toString();
-				console.log(temp);
+				//console.log(temp);
 				self.prelim[self.pageData['dateIdx']] = temp;
 				return self.prelim.$save(self.pageData['dateIdx']).then(function(){
 					prelim().then(function(){
@@ -310,6 +378,72 @@
 			}
 		}
 
+		function showStaffPaidDialog(ev){
+			var dialog = {
+				controller: 'StaffPaidDialogController as staffPaidCtrl',
+				templateUrl: './app/dialogs/staffPaid.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: true,
+				locals: {
+					matchName: self.pageData.name,
+					sport: self.pageData.sport
+				}
+			}
+			if(isHigherUp()){
+				$mdDialog.show(dialog).then(function(){
+
+				}, function(){
+
+				});
+			}
+		}
+
+		function showStaffVoluDialog(ev){
+			var dialog = {
+				controller: 'StaffVoluDialogController as staffVoluCtrl',
+				templateUrl: './app/dialogs/staffVolu.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: true,
+				locals: {
+					matchName: self.pageData.name,
+					sport: self.pageData.sport
+				}
+			}
+			if(isHigherUp()){
+				$mdDialog.show(dialog).then(function(){
+
+				}, function(){
+
+				});
+			}
+		}
+
+		function showStaffScoreDialog(ev){
+			var dialog = {
+				controller: 'StaffScorDialogController as staffScorCtrl',
+				templateUrl: './app/dialogs/staffScor.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+				fullscreen: true,
+				locals: {
+					matchName: self.pageData.name,
+					sport: self.pageData.sport
+				}
+			}
+			if(isHigherUp()){
+				$mdDialog.show(dialog).then(function(){
+
+				}, function(){
+
+				});
+			}
+		}				
+
 		function showAddRosterDialog(ev, teamId, tr){
 			var fs = ($mdMedia('sm') || $mdMedia('xs'));
 			var dialog = {
@@ -406,6 +540,8 @@
 					}
 				}
 			}
+
+			self.pageData['audience'] = getPrelim('audience');
 
 			self.pageData['loaded'] = true;
 			return self.pageData;
